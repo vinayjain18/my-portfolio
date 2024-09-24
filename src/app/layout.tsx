@@ -28,7 +28,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Vinay Jain",
   description:
-    "Vinay Jain is a proficient Software Engineer and AI Developer from India, skilled in front-end and back-end development using modern tech stacks along with LLM and RAG-based applications.",
+    "Hi, I'm Vinay Jain, a proficient Software Engineer and AI Developer from India, skilled in front-end and back-end development using modern tech stacks along with LLM and RAG-based applications.",
   robots: {
     index: true,
     follow: true,
