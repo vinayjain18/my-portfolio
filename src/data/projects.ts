@@ -2,6 +2,44 @@ import { IProjectItem, ProjectType, RepoType } from "@/types";
 
 const projects: IProjectItem[] = [
   {
+    id: "desihelper",
+    title: "DesiHelper: Your Indian Services Hub in the US",
+    description:
+      "DesiHelper is a comprehensive marketplace platform that allows service providers to create business listings, manage their services, and connect with customers.",
+    icon: "/skills/marketplace.png",
+    repoType: RepoType.Private,
+    projectType: ProjectType.Freelance,
+    url: "https://desihelper.io/",
+    tags: ["Next JS", "TypeScript", "Python", "FastAPI", "Supabase"],
+    sceenshots: ["/screenshots/rippl.png"],
+  },
+  {
+    id: "document-qa-system",
+    title: "Document QA System - RAG",
+    description:
+      "Document Q&A System, is designed to process PDF documents and provide concise answers to user queries based on the content of uploaded documents. It leverages advanced language models and document processing techniques to deliver accurate and contextually relevant responses.",
+    icon: "/skills/question-and-answer.png",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/vinayjain18/document-qa-system",
+    url: "https://document-app-system.streamlit.app/",
+    tags: ["Python", "OpenAI", "Langchain", "Streamlit", "ChromaDB"],
+    sceenshots: ["/screenshots/rippl.png"],
+  },
+  {
+    id: "med-ai",
+    title: "MedAI: Your AI Health Assistant",
+    description:
+      "MedAI, an AI-powered health assistant designed to help you understand and manage your health. It has Report analyzer where you can upload your medical reports and receive insights on your health and Health Assistant for any of your queries.",
+    icon: "/skills/medical-report.png",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    githubUrl: "https://github.com/vinayjain18/med-ai",
+    url: "https://med-ai-doctor.streamlit.app/",
+    tags: ["Python", "Groq", "Langchain", "Streamlit"],
+    sceenshots: ["/screenshots/rippl.png"],
+  },
+  {
     id: "content-planner-tool",
     title: "Fluence: Content Planner Tool",
     description:
@@ -10,7 +48,6 @@ const projects: IProjectItem[] = [
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "https://github.com/vinayjain18/fluence",
-    url: "https://fluence.azurewebsites.net/",
     tags: ["Python", "OpenAI", "Django", "Tailwind"],
     sceenshots: ["/screenshots/rippl.png"],
   },
@@ -37,29 +74,6 @@ const projects: IProjectItem[] = [
     githubUrl: "https://github.com/vinayjain18/supermarket-sales-dataengineering-project",
     url: "https://lookerstudio.google.com/reporting/31aad5f0-6dd1-4836-aee0-e492e3aff3ea",
     tags: ["Python", "Looker", "Mage AI", "BigQuery", "GCP"],
-  },
-  {
-    id: "synopsia-healthcare-website",
-    title: "Synopsia: AI healthcare website",
-    description:
-      "This AI healthcare website is a web-based application designed to assist patients in predicting their disease based on their symptoms, recommending appropriate drugs, and booking appointments with doctors.",
-    icon: "/skills/django.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/vinayjain18/Synopsia",
-    url: "https://github.com/vinayjain18/Synopsia",
-    tags: ["Python", "Bootstrap", "Django", "Scikit learn"],
-  },
-  {
-    id: "sentiment-analyzer",
-    title: "Sentiment Analyzer",
-    description:
-      "This app is an Review Sentiment Analysis and a LLM-powered chatbot for Amazon Product related queries.",
-    icon: "/skills/huggingface.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/vinayjain18/amazon-chat",
-    tags: ["HuggingFace", "Streamlit", "NLTK", "LLM"],
   },
 ];
 

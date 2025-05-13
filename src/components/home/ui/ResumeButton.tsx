@@ -5,10 +5,12 @@ const ResumeButton = () => {
   return (
     <Link
       className="app__outlined_btn min-w-[12rem]"
-      href={LocalConfig.values.NEXT_PUBLIC_RESUME_LINK}
+      // href={LocalConfig.values.NEXT_PUBLIC_RESUME_LINK}
+      href="/Vinay-Jain-Resume.pdf"
       target="_blank"
+      rel="noopener noreferrer"
     >
-      Download Resume
+      Resume
     </Link>
   );
 };

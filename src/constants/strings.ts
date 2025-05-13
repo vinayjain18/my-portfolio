@@ -19,6 +19,9 @@ class Strings {
   static twitterLink = "https://www.twitter.com/vinayjn18";
   static twitterUsername = "vinayjn18";
 
+  static whatsapp = "WhatsApp";
+  static whatsappLink = "https://wa.me/918169796256";
+
   static email = "Email";
   static primaryEmailLink = "mailto:vinayjain449@gmail.com";
   static primaryEmail = "vinayjain449@gmail.com";

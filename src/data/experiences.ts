@@ -2,16 +2,16 @@ import { IExperienceItem } from "@/types";
 
 const experiences: IExperienceItem[] = [
   {
-    designation: "AI Developer",
-    company: "WebsiNova Technologies",
-    startDate: "Jan 2023",
+    designation: "AI & Full Stack Developer",
+    company: "GreenFi",
+    startDate: "June 2024",
     endDate: "",
     isCurrentJob: true,
-    location: "Mumbai, India",
+    location: "Remote, India",
     shortDescription:
-      "As an AI Developer, I am working on creating AI apps and solutions, focused on company's specific objectives.",
+      "I am working on creating AI solutions like RAG-based Q&A systems and also worked on developing the SaaS platform for GreenFi.",
     description:
-      "As an AI Developer, I specialize in creating innovative AI applications and solutions tailored to meet the specific objectives and requirements of each company. My work involves leveraging advanced machine learning algorithms, LLM models and integrating APIs to build robust models that address complex problems, ensuring tangible and impactful results.",
+      "I am working on creating AI solutions like RAG-based Q&A systems, integrating it with the Saas platform, solving bugs and fixes both on frontend as well as backend, and optimizing the backend APIs. I have also built scrapper for fetching real-world news based on business objectives. My role involves collaborating with cross-functional teams to ensure the successful implementation of these solutions, contributing to the growth and success of GreenFi's AI initiatives.",
   },
   {
     designation: "ML Engineer Intern",

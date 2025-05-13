@@ -59,10 +59,10 @@ const FloatingNavbar = ({
           target="_blank"
           className="border text-xs/none sm:text-sm/none font-medium relative border-white/[0.2] text-white hover:text-[var(--primaryColor)] px-4 py-2 rounded-full"
         >
-          <span className="block sm:hidden">
+          <span className="sm:inline">
             <FontAwesomeIcon icon={faWhatsapp} title="Whatsapp" />
-          </span>
-          <span className="hidden sm:block">Whatsapp</span>
+          </span>&nbsp;&nbsp;
+          <span className="hidden sm:inline">Whatsapp</span>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-[var(--primaryColor)] to-transparent  h-px" />
         </Link>
       </motion.div>

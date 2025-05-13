@@ -60,6 +60,11 @@ const skills: ISkillListItem[] = [
         icon: "/skills/django.svg",
       },
       {
+        title: "FastAPI",
+        level: SkillLevel.Expert,
+        icon: "/skills/fastapi.svg",
+      },
+      {
         title: "Socket.io",
         level: SkillLevel.Intermediate,
         icon: "/skills/socket-io.png",
