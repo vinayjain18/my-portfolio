@@ -5,7 +5,7 @@ import ConstraintedBox from "@/components/core/ConstraintedBox";
 import ResponsiveBox from "@/components/core/ResponsiveBox";
 import Row from "@/components/core/Row";
 import socialLinks from "@/data/socialLinks";
-import ResumeButton from "./ui/ResumeButton";
+import BookCallButton from "./ui/BookCallButton";
 import TalkButton from "./ui/TalkButton";
 import { FlipWords } from "../common/FlipWords";
 
@@ -34,7 +34,7 @@ const HomeSection1 = ({ id }: Readonly<{ id: string }>) => {
 
           <div className="gap-4 mt-12 lg:mt-16 flex flex-col md:flex-row">
             <TalkButton />
-            <ResumeButton />
+            <BookCallButton />
           </div>
         </Column>
 
