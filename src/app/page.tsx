@@ -13,6 +13,7 @@ const FloatingNavbar = dynamic(() =>
   import("@/components/navbar/FloatingNavbar")
 );
 const ScrollToTop = dynamic(() => import("@/components/common/ScrollToTop"));
+const Footer = dynamic(() => import("@/components/common/Footer"));
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
       <HomeSection4 id="skills" />
       <HomeSection5 id="projects" />
       <HomeSection6 id="contact" />
+      <Footer />
       <ScrollToTop />
     </PageBox>
   );

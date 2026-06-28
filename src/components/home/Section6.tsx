@@ -6,6 +6,8 @@ import SectionTitle from "@/components/common/SectionTitle";
 import SocialButton from "./ui/SocialButton";
 import socialLinks from "@/data/socialLinks";
 import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import Strings from "@/constants/strings";
 
 const HomeSection6 = ({ id }: { id: string }) => {
   return (
@@ -33,6 +35,12 @@ const HomeSection6 = ({ id }: { id: string }) => {
                 />
               );
             })}
+
+            <SocialButton
+              text={Strings.whatsapp}
+              icon={faWhatsapp}
+              url={Strings.whatsappLink}
+            />
 
             {/* <a href="#" target="_blank">
               <img

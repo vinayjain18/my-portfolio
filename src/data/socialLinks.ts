@@ -10,6 +10,12 @@ import type { ISocialLinkItem } from "@/types";
 
 const socialLinks: ISocialLinkItem[] = [
   {
+    name: Strings.linkedIn,
+    url: Strings.linkedInLink,
+    icon: faLinkedin,
+    text: Strings.linkedInUsername,
+  },
+  {
     name: Strings.twitter,
     url: Strings.twitterLink,
     icon: faXTwitter,
@@ -20,12 +26,6 @@ const socialLinks: ISocialLinkItem[] = [
     url: Strings.githubLink,
     icon: faGithub,
     text: Strings.githubUsername,
-  },
-  {
-    name: Strings.linkedIn,
-    url: Strings.linkedInLink,
-    icon: faLinkedin,
-    text: Strings.linkedInUsername,
   },
   {
     name: Strings.email,

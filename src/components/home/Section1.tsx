@@ -22,17 +22,24 @@ const HomeSection1 = ({ id }: Readonly<{ id: string }>) => {
           <Column classNames="w-full items-start text-left gap-6">
             <div className="inline-flex flex-wrap items-center">
               <p className="text-2xl/normal sm:text-3xl/normal md:text-4xl/normal lg:text-5xl/normal dark:text-[var(--textColor)] text-[var(--textColor)] font-bold">
-                Hi there, I am
+                Hi there, I am&nbsp;
               </p>
-              <FlipWords
-                words={["Vinay Jain", "@vinayjn18"]}
-                className="text-2xl/normal sm:text-3xl/normal md:text-4xl/normal lg:text-5xl/normal dark:text-[var(--primaryColor)] text-[var(--primaryColor)] font-bold"
-              />
+              <p className="text-2xl/normal sm:text-3xl/normal md:text-4xl/normal lg:text-5xl/normal dark:text-[var(--primaryColor)] text-[var(--primaryColor)] font-bold">
+                Vinay Jain
+              </p>
             </div>
 
-            <p className="text-base/normal md:text-lg/normal dark:text-[var(--textColorLight)] text-[var(--textColorLight)]">
-              Tech Lead & Founder, WebsiNova Technologies
-            </p>
+            <div className="inline-flex flex-wrap items-center text-base/normal md:text-lg/normal dark:text-[var(--textColorLight)] text-[var(--textColorLight)]">
+              <FlipWords
+                words={[
+                  "Tech Lead & Founder, WebsiNova Technologies",
+                  "AI & RAG Systems Engineer",
+                  "Full-Stack Developer",
+                ]}
+                duration={2600}
+                className="text-base/normal md:text-lg/normal font-normal dark:text-[var(--textColorLight)] text-[var(--textColorLight)] ml-0"
+              />
+            </div>
 
             <TerminalIntro />
 

@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 import { INavItem } from "@/types";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import useVisibleSection from "@/hooks/useVisibleSection";
 
 const FloatingNavbar = ({
   navItems,
@@ -15,6 +15,8 @@ const FloatingNavbar = ({
   navItems: INavItem[];
   className?: string;
 }) => {
+  const visibleSectionId = useVisibleSection();
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -34,40 +36,51 @@ const FloatingNavbar = ({
           className
         )}
       >
-        {navItems.map((navItem: INavItem, idx: number) => (
-          <Link
-            key={`link=${idx}`}
-            href={navItem.link}
-            className={cn(
-              "relative items-center flex space-x-1 text-[var(--textColor)] hover:text-[var(--primaryColor)]"
-            )}
-          >
-            <span className="block sm:hidden">
-              <FontAwesomeIcon
-                id={`nav-item-icon${idx}`}
-                icon={navItem.icon}
-                titleId={`nav-item-icon-title${idx}`}
-                title={navItem.name}
-              />
-            </span>
-            <span className="hidden sm:block text-sm/6 lg:text-base">
-              {navItem.name}
-            </span>
-          </Link>
-        ))}
+        {navItems.map((navItem: INavItem, idx: number) => {
+          const isActive = navItem.link === `/#${visibleSectionId}`;
+
+          return (
+            <Link
+              key={`link=${idx}`}
+              href={navItem.link}
+              className={cn(
+                "relative items-center flex space-x-1 transition-colors",
+                isActive
+                  ? "text-[var(--primaryColor)]"
+                  : "text-[var(--textColor)] hover:text-[var(--primaryColor)]"
+              )}
+            >
+              <span className="block sm:hidden">
+                <FontAwesomeIcon
+                  id={`nav-item-icon${idx}`}
+                  icon={navItem.icon}
+                  titleId={`nav-item-icon-title${idx}`}
+                  title={navItem.name}
+                />
+              </span>
+              <span className="hidden sm:block text-sm/6 lg:text-base">
+                {navItem.name}
+              </span>
+              {isActive ? (
+                <span className="absolute inset-x-0 -bottom-1.5 mx-auto h-px w-full bg-[var(--primaryColor)]" />
+              ) : null}
+            </Link>
+          );
+        })}
         <Link
-          href="https://wa.me/+918169796256"
+          href="https://cal.com/vinay-jain/30min"
           target="_blank"
           className="border text-xs/none sm:text-sm/none font-medium relative border-[var(--borderColor)] text-[var(--textColor)] hover:text-[var(--primaryColor)] px-4 py-2 rounded-full"
         >
           <span className="sm:inline">
             <FontAwesomeIcon
-              icon={faWhatsapp}
-              title="Whatsapp"
-              titleId="whatsapp-icon-title"
+              icon={faCalendarCheck}
+              title="Book a Call"
+              titleId="book-call-icon-title"
             />
-          </span>&nbsp;&nbsp;
-          <span className="hidden sm:inline">Whatsapp</span>
+          </span>
+          &nbsp;&nbsp;
+          <span className="hidden sm:inline">Book a Call</span>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-[var(--primaryColor)] to-transparent  h-px" />
         </Link>
       </motion.div>

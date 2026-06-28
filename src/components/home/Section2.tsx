@@ -9,6 +9,7 @@ const capabilities = [
   "AI/RAG Systems",
   "Chatbot Development",
   "AI Consultancy",
+  "Cloud Architecture",
 ];
 
 const HomeSection2 = ({ id }: { id: string }) => {
@@ -28,12 +29,13 @@ const HomeSection2 = ({ id }: { id: string }) => {
             SaaS, owning architecture, sprint delivery, and client communication for
             both. In June 2026 I started WebsiNova Technologies, where I now provide
             full-stack and AI development services to clients directly. My focus is
-            RAG-based AI systems, microservice architecture, and full-stack
-            development with React, Node.js, and FastAPI.
+            RAG-based AI systems, agentic AI workflows, and microservice
+            architecture, and I build across the stack with React, Next.js,
+            Node.js, FastAPI, and Django.
           </p>
         </div>
 
-        <Row classNames="flex-wrap justify-center gap-3 mt-10">
+        <Row classNames="flex-wrap !justify-center gap-3 mt-10">
           {capabilities.map((capability) => (
             <span
               key={capability}
