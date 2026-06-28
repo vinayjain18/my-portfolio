@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Column from "@/components/core/Column";
@@ -8,56 +9,73 @@ import socialLinks from "@/data/socialLinks";
 import BookCallButton from "./ui/BookCallButton";
 import TalkButton from "./ui/TalkButton";
 import { FlipWords } from "../common/FlipWords";
+import { TerminalIntro } from "../common/TerminalIntro";
 
 const HomeSection1 = ({ id }: Readonly<{ id: string }>) => {
   return (
     <ResponsiveBox
-      classNames="dark:bg-[var(--bgColor)] bg-[var(--bgColor)] dark:bg-grid-small-white/[0.2] bg-grid-small-white/[0.2] min-h-screen items-center justify-center relative overflow-hidden rounded-md"
+      classNames="bg-[var(--bgColor)] min-h-screen items-center justify-center relative overflow-hidden"
       id={id}
     >
-      {/* <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
+      <ConstraintedBox classNames="px-4 py-8 pt-24 md:pt-16 z-20 items-center justify-center">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <Column classNames="w-full items-start text-left gap-6">
+            <div className="inline-flex flex-wrap items-center">
+              <p className="text-2xl/normal sm:text-3xl/normal md:text-4xl/normal lg:text-5xl/normal dark:text-[var(--textColor)] text-[var(--textColor)] font-bold">
+                Hi there, I am
+              </p>
+              <FlipWords
+                words={["Vinay Jain", "@vinayjn18"]}
+                className="text-2xl/normal sm:text-3xl/normal md:text-4xl/normal lg:text-5xl/normal dark:text-[var(--primaryColor)] text-[var(--primaryColor)] font-bold"
+              />
+            </div>
 
-      <ConstraintedBox classNames="px-4 py-8 pt-16 z-20 items-center justify-center">
-        <Column classNames="w-full items-center justify-center">
-          <div className="inline-flex items-center">
-            <p className="text-2xl/normal sm:text-3xl/normal md:text-5xl/normal lg:text-6xl/normal xl:text-7xl/normal dark:text-[var(--textColor)] text-[var(--textColor)] font-bold text-center">
-              Hi there, I am
+            <p className="text-base/normal md:text-lg/normal dark:text-[var(--textColorLight)] text-[var(--textColorLight)]">
+              Tech Lead & Founder, WebsiNova Technologies
             </p>
-            <FlipWords
-              words={["Vinay Jain", "@vinayjn18"]}
-              className="text-2xl/normal sm:text-3xl/normal md:text-5xl/normal lg:text-6xl/normal xl:text-7xl/normal dark:text-[var(--primaryColor)] text-[var(--primaryColor)] font-bold text-center"
-            />
+
+            <TerminalIntro />
+
+            <Row classNames="gap-4 flex-col sm:flex-row">
+              <BookCallButton />
+              <TalkButton />
+            </Row>
+
+            <Column classNames="w-full items-start gap-2">
+              <p className="text-base/6 font-medium">Follow me here</p>
+
+              <Row classNames="gap-2">
+                {socialLinks.slice(0, 5).map((link, index) => {
+                  return (
+                    <Link
+                      key={`social-link-${index}`}
+                      href={link.url}
+                      target="_blank"
+                      className="app__outlined_btn !rounded-full !p-2 lg:!p-3 !aspect-square !border-[var(--textColor)]"
+                      aria-label={`${link.name}`}
+                    >
+                      <span className="text-base/6 text-[var(--textColor)]">
+                        <FontAwesomeIcon icon={link.icon} />
+                      </span>
+                    </Link>
+                  );
+                })}
+              </Row>
+            </Column>
+          </Column>
+
+          <div className="hidden md:flex w-full items-center justify-center">
+            <div className="relative aspect-square w-full max-w-[26rem] rounded-[2rem] overflow-hidden border border-[var(--borderColor)] shadow-[var(--boxShadow)]">
+              <Image
+                src="/my-photo-orange-bg.png"
+                alt="Vinay Jain"
+                fill
+                sizes="(min-width: 768px) 26rem, 100vw"
+                priority
+                className="object-cover"
+              />
+            </div>
           </div>
-          <p className="text-sm/normal md:text-base/normal dark:text-[var(--textColorLight)] text-[var(--textColorLight)]">
-            Software Engineer & AI Developer
-          </p>
-
-          <div className="gap-4 mt-12 lg:mt-16 flex flex-col md:flex-row">
-            <TalkButton />
-            <BookCallButton />
-          </div>
-        </Column>
-
-        <div className="mt-12 lg:mt-16 w-full flex flex-col items-center">
-          <p className="text-base/6 font-medium">Follow me here</p>
-
-          <Row classNames="mt-2 gap-2">
-            {socialLinks.slice(0, 5).map((link, index) => {
-              return (
-                <Link
-                  key={`social-link-${index}`}
-                  href={link.url}
-                  target="_blank"
-                  className="app__outlined_btn !rounded-full !p-2 lg:!p-3 !aspect-square !border-[var(--textColor)]"
-                  aria-label={`${link.name}`}
-                >
-                  <span className="text-base/6 text-[var(--whiteColor)]">
-                    <FontAwesomeIcon icon={link.icon} />
-                  </span>
-                </Link>
-              );
-            })}
-          </Row>
         </div>
       </ConstraintedBox>
     </ResponsiveBox>
