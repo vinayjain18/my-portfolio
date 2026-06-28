@@ -46,6 +46,7 @@ const FloatingNavbar = ({
               <FontAwesomeIcon
                 id={`nav-item-icon${idx}`}
                 icon={navItem.icon}
+                titleId={`nav-item-icon-title${idx}`}
                 title={navItem.name}
               />
             </span>
@@ -60,7 +61,11 @@ const FloatingNavbar = ({
           className="border text-xs/none sm:text-sm/none font-medium relative border-[var(--borderColor)] text-[var(--textColor)] hover:text-[var(--primaryColor)] px-4 py-2 rounded-full"
         >
           <span className="sm:inline">
-            <FontAwesomeIcon icon={faWhatsapp} title="Whatsapp" />
+            <FontAwesomeIcon
+              icon={faWhatsapp}
+              title="Whatsapp"
+              titleId="whatsapp-icon-title"
+            />
           </span>&nbsp;&nbsp;
           <span className="hidden sm:inline">Whatsapp</span>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-[var(--primaryColor)] to-transparent  h-px" />
