@@ -5,6 +5,7 @@ import Column from "@/components/core/Column";
 import SectionTitle from "@/components/common/SectionTitle";
 import SocialButton from "./ui/SocialButton";
 import socialLinks from "@/data/socialLinks";
+import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 
 const HomeSection6 = ({ id }: { id: string }) => {
   return (
@@ -17,6 +18,11 @@ const HomeSection6 = ({ id }: { id: string }) => {
 
         <Column classNames="mt-16 w-full">
           <GridBox classNames="sm:grid-cols-2 w-full mx-auto gap-4">
+            <SocialButton
+              text="Book a Call"
+              icon={faCalendarCheck}
+              url="https://cal.com/vinay-jain/30min"
+            />
             {socialLinks.map((link, index) => {
               return (
                 <SocialButton
