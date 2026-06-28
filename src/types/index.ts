@@ -51,15 +51,6 @@ export interface IProjectItem {
   about?: string;
 }
 
-export type IServiceItem = {
-  id: number | string;
-  title: string;
-  icon?: IconDefinition;
-  shortDescription: string;
-  description: string;
-  icons: string[];
-};
-
 export interface ISkillListItem {
   title: string;
   items: ISkillItem[];

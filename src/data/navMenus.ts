@@ -2,7 +2,6 @@ import { INavItem, INavMenuItem } from "@/types";
 import {
   faHome,
   faUser,
-  faBriefcase,
   faTimeline,
   faAward,
   faLaptopCode,
@@ -15,12 +14,6 @@ const navMenus: INavMenuItem[] = [
     title: "About",
     path: "/#about",
     section: "about",
-  },
-  {
-    id: "services",
-    title: "Services",
-    path: "/#services",
-    section: "services",
   },
   {
     id: "experiences",
@@ -60,11 +53,6 @@ export const menuItems: INavItem[] = [
     name: "About",
     link: "/#about",
     icon: faUser,
-  },
-  {
-    name: "Services",
-    link: "/#services",
-    icon: faBriefcase,
   },
   {
     name: "Experiences",
