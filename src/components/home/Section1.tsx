@@ -33,8 +33,7 @@ const HomeSection1 = ({ id }: Readonly<{ id: string }>) => {
               <FlipWords
                 words={[
                   "Tech Lead & Founder, WebsiNova Technologies",
-                  "AI & RAG Systems Engineer",
-                  "Full-Stack Developer",
+                  "Software Engineer",
                 ]}
                 duration={2600}
                 className="text-base/normal md:text-lg/normal font-normal dark:text-[var(--textColorLight)] text-[var(--textColorLight)] ml-0"
@@ -45,7 +44,9 @@ const HomeSection1 = ({ id }: Readonly<{ id: string }>) => {
 
             <Row classNames="gap-4 flex-col sm:flex-row">
               <BookCallButton />
-              <TalkButton />
+              <div className="hidden md:block">
+                <TalkButton />
+              </div>
             </Row>
 
             <Column classNames="w-full items-start gap-2">

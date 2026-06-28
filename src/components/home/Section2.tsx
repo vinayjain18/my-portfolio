@@ -35,11 +35,11 @@ const HomeSection2 = ({ id }: { id: string }) => {
           </p>
         </div>
 
-        <Row classNames="flex-wrap !justify-center gap-3 mt-10">
+        <Row classNames="w-full flex-wrap !justify-center gap-3 mt-10">
           {capabilities.map((capability) => (
             <span
               key={capability}
-              className="rounded-full border border-[var(--primaryColor50)] text-[var(--primaryColor)] px-4 py-2 text-sm/6 font-medium"
+              className="rounded-full border border-[var(--primaryColor50)] text-[var(--primaryColor)] px-3 py-1.5 text-sm/6 font-medium"
             >
               {capability}
             </span>

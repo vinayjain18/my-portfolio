@@ -40,14 +40,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: [
-    {
-      url: "/favicon.ico",
-      rel: "icon",
-      sizes: "any",
-      type: "image/svg+xml",
-    },
-  ],
   keywords: [
     "vinay jain",
     "vinay",

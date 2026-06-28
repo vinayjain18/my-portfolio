@@ -2,6 +2,28 @@ import { IProjectItem, ProjectType, RepoType } from "@/types";
 
 const projects: IProjectItem[] = [
   {
+    id: "greenfi",
+    title: "GreenFi: Climatetech & ESG Platform",
+    description:
+      "A multi-module ESG platform covering carbon emission tracking, ESG ratings for infrastructure projects, sustainability reporting, media monitoring, and regulatory compliance. As Tech Lead, I built the RAG pipeline for ESG document Q&A using LLMs and Milvus, served through FastAPI, across a serverless AWS Lambda and EC2 backend with an Express 5 API and MySQL.",
+    icon: "/skills/fastapi.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.JobWork,
+    url: "https://greenfi.ai",
+    tags: ["FastAPI", "AWS Lambda", "Milvus", "LLMs", "MySQL"],
+  },
+  {
+    id: "lejit-ai",
+    title: "Lejit AI: Legal Tech SaaS Platform",
+    description:
+      "A legal tech SaaS platform I architected from scratch, with separate flows and role-specific access for lawyers, citizens, corporates, law students, and law enforcement. Built RAG-based legal AI features including document Q&A, drafting, case comparison, and legal opinion generation, plus a multi-tenant law enforcement module with department hierarchy and role-based access.",
+    icon: "/skills/chatbot-1.svg",
+    repoType: RepoType.Public,
+    projectType: ProjectType.JobWork,
+    url: "https://lejit.ai",
+    tags: ["RAG", "LLMs", "Milvus", "Razorpay", "Twilio"],
+  },
+  {
     id: "finsight",
     title: "FinSight: Bank Statement Analyzer",
     description:
@@ -11,38 +33,6 @@ const projects: IProjectItem[] = [
     projectType: ProjectType.Personal,
     url: "https://financial-statement-analyzer-three.vercel.app/",
     tags: ["Next JS", "FastAPI", "OpenAI"],
-    sceenshots: ["/screenshots/rippl.png"],
-  },
-  {
-    id: "greenfi",
-    title: "GreenFi: Climatetech & ESG Platform",
-    description:
-      "A multi-module ESG platform covering carbon emission tracking, ESG ratings for infrastructure projects, sustainability reporting, media monitoring, and regulatory compliance. As Tech Lead, I built the RAG pipeline for ESG document Q&A using LLMs and Milvus, served through FastAPI, across a serverless AWS Lambda and EC2 backend with an Express 5 API and MySQL.",
-    icon: "/skills/aws.svg",
-    repoType: RepoType.Private,
-    projectType: ProjectType.JobWork,
-    tags: ["FastAPI", "AWS Lambda", "Milvus", "LLMs", "MySQL"],
-  },
-  {
-    id: "lejit-ai",
-    title: "Lejit AI: Legal Tech SaaS Platform",
-    description:
-      "A legal tech SaaS platform I architected from scratch, with separate flows and role-specific access for lawyers, citizens, corporates, law students, and law enforcement. Built RAG-based legal AI features including document Q&A, drafting, case comparison, and legal opinion generation, plus a multi-tenant law enforcement module with department hierarchy and role-based access.",
-    icon: "/skills/chatbot-1.svg",
-    repoType: RepoType.Private,
-    projectType: ProjectType.JobWork,
-    tags: ["RAG", "LLMs", "Milvus", "Razorpay", "Twilio"],
-  },
-  {
-    id: "desihelper",
-    title: "DesiHelper: Your Indian Services Hub in the US",
-    description:
-      "DesiHelper is a comprehensive marketplace platform that allows service providers to create business listings, manage their services, and connect with customers.",
-    icon: "/skills/marketplace.png",
-    repoType: RepoType.Private,
-    projectType: ProjectType.Freelance,
-    url: "https://desihelper.io/",
-    tags: ["Next JS", "TypeScript", "Python", "FastAPI", "Supabase"],
     sceenshots: ["/screenshots/rippl.png"],
   },
   {
@@ -71,16 +61,16 @@ const projects: IProjectItem[] = [
     sceenshots: ["/screenshots/rippl.png"],
   },
   {
-    id: "language-detector",
-    title: "Language Detector",
+    id: "desihelper",
+    title: "DesiHelper: Your Indian Services Hub in the US",
     description:
-      "It is a Language Detector web app to predict the language of the text you enter. The languages it can detect are Arabic, Danish, Dutch, English, French, German, Greek, Hindi, Italian, Kannada, Malayalam, Portugeese, Russian, Spanish, Sweedish, Tamil, Turkish",
-    icon: "/skills/streamlit.svg",
-    repoType: RepoType.Public,
-    projectType: ProjectType.Personal,
-    githubUrl: "https://github.com/vinayjain18/language-detector",
-    url: "https://language-detect0r.streamlit.app/",
-    tags: ["Streamlit", "Python", "Scikit learn", "ML models"],
+      "DesiHelper is a comprehensive marketplace platform that allows service providers to create business listings, manage their services, and connect with customers.",
+    icon: "/skills/marketplace.png",
+    repoType: RepoType.Private,
+    projectType: ProjectType.Freelance,
+    url: "https://desihelper.io/",
+    tags: ["Next JS", "TypeScript", "Python", "FastAPI", "Supabase"],
+    sceenshots: ["/screenshots/rippl.png"],
   },
 ];
 
