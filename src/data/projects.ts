@@ -2,6 +2,18 @@ import { IProjectItem, ProjectType, RepoType } from "@/types";
 
 const projects: IProjectItem[] = [
   {
+    id: "finsight",
+    title: "FinSight: Bank Statement Analyzer",
+    description:
+      "FinSight takes bank statement PDFs, extracts transactions using AI, categorizes expenses, and shows spending insights through interactive charts. Analyzed data can be downloaded as CSV or PDF, no signup is needed, and no data is stored on the server.",
+    icon: "/skills/medical-report.png",
+    repoType: RepoType.Public,
+    projectType: ProjectType.Personal,
+    url: "https://financial-statement-analyzer-three.vercel.app/",
+    tags: ["Next JS", "FastAPI", "OpenAI"],
+    sceenshots: ["/screenshots/rippl.png"],
+  },
+  {
     id: "desihelper",
     title: "DesiHelper: Your Indian Services Hub in the US",
     description:
