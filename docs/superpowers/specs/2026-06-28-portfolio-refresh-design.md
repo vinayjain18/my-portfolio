@@ -74,17 +74,23 @@ CTA row: **Book a Call** (filled button, links to `https://cal.com/vinay-jain/30
 
 ### New About section
 
-New component (e.g. `src/components/home/Section1b.tsx` or renumber existing sections - exact filename decided at implementation time), inserted between hero and Services, with `id="about"` - this matches an existing nav entry in `src/data/navMenus.ts` that currently points to a non-existent section.
+New component (e.g. `src/components/home/Section1b.tsx` or renumber existing sections - exact filename decided at implementation time), inserted between hero and Skills, with `id="about"` - this matches an existing nav entry in `src/data/navMenus.ts` that currently points to a non-existent section.
 
 Content: short personal narrative - Tech Lead at GreenFi & Lejit AI -> founder of WebsiNova Technologies, current focus (AI/RAG systems, full-stack development, team leadership), framed toward availability for client work. Text-only (photo already shown in hero, avoiding repetition).
 
-### Experience cards (`ExperienceItem.tsx`, `Section3.tsx`)
+Below the narrative, a compact capability tag row (not full cards): Full-Stack Development, Backend Architecture, AI/RAG Systems, Chatbot Development, AI Consultancy. This replaces the dedicated Services section (see below) - same "I do this and have experience in it" signal, without a full scroll-stop of generic service-card copy.
 
-Same hover-reveal card pattern, restyled to new palette. The fixed `min-h-80` is loosened (or made `min-h-auto` with a sensible min) if needed to fit the longer GreenFi & Lejit AI hover description without clipping.
+### Services section - removed
 
-### Services / Skills / Projects sections
+The dedicated Services section (`Section2.tsx`, `HoverLayoutGrid.tsx`, `AnimatedServiceCard.tsx`, `src/data/services.ts`) is removed entirely as its own scroll-stop. Rationale: six animated cards with paragraph-length generic copy ("I deliver stunning, user-friendly websites...") reads like an agency landing page, not a personal portfolio, and is one of the more obvious "AI template" tells on the current site. The same signal is carried by the About section's capability tag row instead. "Mobile App Development" is dropped from the capability list (no longer an offered service). `navMenus.ts` loses its "Services" entry; `page.tsx` no longer renders `HomeSection2`.
 
-No structural change - same components (`HoverLayoutGrid`, `ProjectItem`, etc.), restyled to new palette only.
+### Experience section -> commit-graph timeline (`ExperienceItem.tsx`, `Section3.tsx`)
+
+Replaces the hover-flip card grid with a vertical git-log/commit-graph-style timeline: a vertical "branch" line with commit-node dots per role, connecting lines between them, each node expanding into a card with role/company/dates and the description (no hover-to-reveal needed since there's room for full text directly). Visually reinforces "developer" without being a literal terminal pastiche. Needs enough vertical room for the longer GreenFi & Lejit AI entry's full description.
+
+### Skills / Projects sections
+
+No structural change - same components (`ProjectItem`, etc.), restyled to new palette only.
 
 ### Get in Touch (`Section6.tsx`)
 
@@ -93,6 +99,22 @@ Add a "Book a Call" entry alongside the existing `SocialButton` grid, same visua
 ### Navbar
 
 No structural change, restyled colors only. "About" nav link now resolves to the new section instead of a missing anchor.
+
+## 4. Developer-themed animation
+
+Two pieces, combined:
+
+1. **Terminal intro in the hero.** A small terminal-window component (rounded warm-toned chrome, monospace text, blinking caret) sitting near the hero copy/photo, typing out something like:
+   ```
+   $ whoami
+   Vinay Jain - Tech Lead, AI & Full-Stack Developer
+   $ status
+   Available for new client work
+   ```
+   Looping or one-shot on load (one-shot preferred so it doesn't distract on repeat visits/long dwell time). The repo's existing `TypewriterEffect.tsx` only staggers a single line of characters in on view - it doesn't fit a multi-line command/output sequence, so this needs a small new component (`TerminalIntro.tsx` or similar) built with the same framer-motion stagger approach rather than a new dependency.
+2. **Commit-graph timeline for Experience**, as described above.
+
+Both are genuinely different from generic scroll-fade-in animation and tie directly to "this person is a developer" rather than being decorative motion.
 
 ## Style notes (content writing)
 
