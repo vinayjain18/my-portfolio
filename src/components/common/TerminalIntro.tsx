@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useAnimate, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { cn } from "@/utils/cn";
 
 type TerminalLine = {
@@ -17,7 +17,7 @@ const lines: TerminalLine[] = [
 ];
 
 export const TerminalIntro = ({ className }: Readonly<{ className?: string }>) => {
-  const [scope, animate] = useAnimate();
+  const scope = useRef<HTMLDivElement>(null);
   const isInView = useInView(scope, { once: true });
   const [visibleLines, setVisibleLines] = useState(0);
 
