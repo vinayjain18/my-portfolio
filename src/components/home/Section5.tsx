@@ -7,13 +7,23 @@ import projects from "@/data/projects";
 const HomeSection5 = ({ id }: { id: string }) => {
   return (
     <ResponsiveBox
-      classNames="bg-[var(--dialogColor)] min-h-[calc(100vh-5rem)] items-center justify-center"
+      as="section"
+      ariaLabel="Selected projects"
+      classNames="bg-[var(--bgColor)] items-center justify-center"
       id={id}
     >
-      <ConstraintedBox classNames="p-4 py-16">
-        <SectionTitle>Recent Projects</SectionTitle>
+      <ConstraintedBox classNames="px-5 sm:px-8 section__pad">
+        <SectionTitle
+          index="04"
+          eyebrow="Work"
+          lead="My own product at WebsiNova, the two platforms I led as tech lead, and the smaller things I build when a problem annoys me enough."
+        >
+          Selected projects.
+        </SectionTitle>
 
-        <ProjectList projects={projects} />
+        <div className="w-full mt-14">
+          <ProjectList projects={projects} />
+        </div>
       </ConstraintedBox>
     </ResponsiveBox>
   );

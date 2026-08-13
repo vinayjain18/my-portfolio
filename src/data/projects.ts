@@ -2,6 +2,28 @@ import { IProjectItem, ProjectType, RepoType } from "@/types";
 
 const projects: IProjectItem[] = [
   {
+    id: "karyalo",
+    title: "Karyalo: Contract Management Platform",
+    description:
+      "WebsiNova's own contract platform, covering the whole loop from first draft to signature. It drafts from a team's own precedents, clause library and approved workflows, grades every clause against their negotiating playbook with the redline already written, then sends the contract out on a single revocable link and collects signatures bound to the exact version reviewed. Built for law firms, in-house legal teams and business teams.",
+    icon: "/skills/karyalo.svg",
+    repoType: RepoType.Private,
+    projectType: ProjectType.Product,
+    url: "https://karyalo.in/",
+    tags: [
+      "Contract AI",
+      "Clause playbooks",
+      "E-signature",
+      "Document workflows",
+    ],
+    highlights: [
+      "Draft — from your own precedents, approved wording and clause library",
+      "Check — every clause graded against your playbook, redline written",
+      "Send — one revocable link, no account needed at the other end",
+      "Sign — bound to the exact version reviewed, executed PDF to everyone",
+    ],
+  },
+  {
     id: "greenfi",
     title: "GreenFi: Climatetech & ESG Platform",
     description:
@@ -33,7 +55,6 @@ const projects: IProjectItem[] = [
     projectType: ProjectType.Personal,
     url: "https://financial-statement-analyzer-three.vercel.app/",
     tags: ["Next JS", "FastAPI", "OpenAI"],
-    sceenshots: ["/screenshots/rippl.png"],
   },
   {
     id: "supermarket-sales-analysis",
@@ -58,7 +79,6 @@ const projects: IProjectItem[] = [
     githubUrl: "https://github.com/vinayjain18/document-qa-system",
     url: "https://document-app-system.streamlit.app/",
     tags: ["Python", "OpenAI", "Langchain", "Streamlit", "ChromaDB"],
-    sceenshots: ["/screenshots/rippl.png"],
   },
   {
     id: "desihelper",
@@ -70,7 +90,6 @@ const projects: IProjectItem[] = [
     projectType: ProjectType.Freelance,
     url: "https://desihelper.io/",
     tags: ["Next JS", "TypeScript", "Python", "FastAPI", "Supabase"],
-    sceenshots: ["/screenshots/rippl.png"],
   },
 ];
 

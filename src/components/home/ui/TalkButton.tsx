@@ -6,14 +6,13 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 const TalkButton = () => {
   return (
     <Link
-      className="app__filled_btn min-w-[12rem]"
+      className="app__outlined_btn min-w-[11rem]"
       href={Strings.whatsappLink}
       target="_blank"
+      rel="noopener noreferrer"
     >
-      Let&apos;s Talk&nbsp;&nbsp;
-      <span className="hidden sm:inline">
-      <FontAwesomeIcon icon={faWhatsapp} className="text-xl" />
-      </span>
+      <FontAwesomeIcon icon={faWhatsapp} className="text-lg" />
+      Message on WhatsApp
     </Link>
   );
 };

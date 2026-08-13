@@ -15,6 +15,12 @@ export interface INavItem {
   icon: IconProp;
 }
 
+export interface IRoleItem {
+  title: string;
+  startDate: string;
+  endDate: string;
+}
+
 export interface IExperienceItem {
   designation: string;
   company: string;
@@ -23,7 +29,12 @@ export interface IExperienceItem {
   isCurrentJob: boolean;
   location: string;
   shortDescription: string;
-  description: string;
+  /** One entry per paragraph. */
+  description: string[];
+  /** Title progression within the same company, oldest first. */
+  roles?: IRoleItem[];
+  /** Shown when the role ran concurrently with another entry. */
+  concurrentNote?: string;
 }
 
 export enum RepoType {
@@ -35,6 +46,7 @@ export enum ProjectType {
   Personal,
   JobWork,
   Freelance,
+  Product,
 }
 
 export interface IProjectItem {
@@ -49,6 +61,8 @@ export interface IProjectItem {
   tags?: string[];
   sceenshots?: string[];
   about?: string;
+  /** Short "step — detail" lines shown on the lead project card. */
+  highlights?: string[];
 }
 
 export interface ISkillListItem {
@@ -102,6 +116,9 @@ export interface CoreComponentsProps {
   onClick?: MouseEventHandler<HTMLDivElement>;
   id?: string;
   elementRef?: RefObject<HTMLDivElement>;
+  /** Semantic element to render. Defaults to a div. */
+  as?: "div" | "section" | "article" | "aside" | "header" | "footer" | "nav";
+  ariaLabel?: string;
 }
 
 export interface ViewportProps {

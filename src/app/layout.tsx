@@ -1,34 +1,79 @@
 import "./globals.scss";
-import { Poppins } from "next/font/google";
+import { Manrope, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { ReactNode } from "react";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import Script from "next/script";
 import LocalConfig from "@/constants/config";
 import { WebVitals } from "@/components/common/WebVitals";
 
-const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+const manrope = Manrope({
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin", "latin-ext"],
   display: "swap",
   preload: true,
-  fallback: [
-    "system-ui",
-    "arial",
-    "BlinkMacSystemFont",
-    "Segoe UI",
-    "Roboto",
-    "Oxygen",
-    "Ubuntu",
-    "Fira Sans",
-    "Droid Sans",
-  ],
+  variable: "--font-sans",
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  weight: ["500", "600", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  variable: "--font-display",
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
+  variable: "--font-mono",
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+});
+
+const siteUrl = "https://vinayjain.dev";
+
 export const metadata: Metadata = {
-  title: "Vinay Jain - AI & Full Stack Developer",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Vinay Jain — AI & full-stack engineer",
+    template: "%s — Vinay Jain",
+  },
   description:
-    "Hi, I'm Vinay Jain, a proficient Software Engineer and AI Developer from Mumbai, India, skilled in front-end and back-end development using modern tech stacks along with AI and RAG-based applications.",
+    "Vinay Jain is a software engineer and founder of WebsiNova Technologies, building RAG-based AI systems, agentic workflows and full-stack products with Next.js, FastAPI, Node.js and Django.",
+  applicationName: "Vinay Jain",
+  authors: [{ name: "Vinay Jain", url: siteUrl }],
+  creator: "Vinay Jain",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Vinay Jain",
+    title: "Vinay Jain — AI & full-stack engineer",
+    description:
+      "Tech lead turned founder. I build RAG-based AI systems, agentic workflows and full-stack products for clients through WebsiNova Technologies.",
+    locale: "en_US",
+    images: [
+      {
+        url: "/vinay-jain-profile-photo.jpeg",
+        width: 1254,
+        height: 1254,
+        alt: "Portrait of Vinay Jain",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vinay Jain — AI & full-stack engineer",
+    description:
+      "Tech lead turned founder. RAG-based AI systems, agentic workflows and full-stack product engineering.",
+    creator: "@vinayjn18",
+    images: ["/vinay-jain-profile-photo.jpeg"],
+  },
   robots: {
     index: true,
     follow: true,
@@ -42,22 +87,28 @@ export const metadata: Metadata = {
   },
   keywords: [
     "vinay jain",
-    "vinay",
     "vinayjain18",
-    "vinay-jain",
-    "jain vinay",
-    "Websinova Technologies",
-    "websinova",
+    "WebsiNova Technologies",
     "full stack developer",
-    "indian developer",
     "AI developer",
-    "AI expert",
+    "RAG systems",
+    "agentic AI",
+    "next.js developer",
+    "fastapi developer",
   ],
+};
+
+export const viewport: Viewport = {
+  themeColor: "#faf7f1",
+  colorScheme: "light",
 };
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
-    <html lang="en" className={poppins.className}>
+    <html
+      lang="en"
+      className={`${manrope.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
         <Script
           strategy="afterInteractive"
@@ -82,7 +133,12 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
         }
       >
         {process.env.NODE_ENV === "development" ? <WebVitals /> : null}
-        <main>{children}</main>
+
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+
+        <main id="main-content">{children}</main>
       </body>
     </html>
   );

@@ -38,14 +38,17 @@ export const TerminalIntro = ({ className }: Readonly<{ className?: string }>) =
     <div
       ref={scope}
       className={cn(
-        "w-full max-w-[28rem] rounded-[var(--defaultRadius)] border border-[var(--borderColor)] bg-[var(--dialogColor)] overflow-hidden shadow-[var(--boxShadow)]",
+        "w-full max-w-[28rem] rounded-md border border-[var(--borderColorStrong)] bg-[var(--textColor)] overflow-hidden shadow-lg",
         className
       )}
     >
-      <div className="flex items-center gap-1.5 px-4 py-2 border-b border-[var(--borderColor)]">
+      <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-[var(--whiteColor10)]">
         <span className="h-2.5 w-2.5 rounded-full bg-[var(--errorColor)]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[var(--warningColor)]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[var(--successColor)]" />
+        <span className="ml-2 mono text-[0.6875rem] text-[var(--whiteColor40)]">
+          ~/vinay
+        </span>
       </div>
 
       <div className="p-4 font-mono text-xs/6 md:text-sm/6 min-h-[7rem]">
@@ -55,7 +58,11 @@ export const TerminalIntro = ({ className }: Readonly<{ className?: string }>) =
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className={line.prompt ? "text-[var(--primaryColor)]" : "text-[var(--textColor)] pl-4"}
+            className={
+              line.prompt
+                ? "text-[var(--secondaryColor)]"
+                : "text-[var(--whiteColor80)] pl-4"
+            }
           >
             {line.prompt ? `${line.prompt} ${line.text}` : line.text}
           </motion.p>
@@ -65,7 +72,7 @@ export const TerminalIntro = ({ className }: Readonly<{ className?: string }>) =
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-            className="inline-block h-[1em] w-[0.5em] bg-[var(--primaryColor)] ml-4 align-middle"
+            className="inline-block h-[1em] w-[0.5em] bg-[var(--secondaryColor)] ml-4 align-middle"
           />
         ) : null}
       </div>

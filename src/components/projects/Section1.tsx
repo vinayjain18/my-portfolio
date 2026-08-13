@@ -2,66 +2,153 @@
 
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import ResponsiveBox from "@/components/core/ResponsiveBox";
 import ConstraintedBox from "@/components/core/ConstraintedBox";
-import Row from "@/components/core/Row";
-import Column from "@/components/core/Column";
-import AppBar from "@/components/common/AppBar";
 import ScreenshotGallery from "./components/ScreenshotGallery";
 import { getProjectDetails } from "@/data/projects";
-import { ProjectType } from "@/types";
+import { ProjectType, RepoType } from "@/types";
+
+const renderProjectType = (type?: ProjectType) => {
+  switch (type) {
+    case ProjectType.Personal:
+      return "Personal project";
+
+    case ProjectType.JobWork:
+      return "Client work";
+
+    case ProjectType.Freelance:
+      return "Freelance project";
+
+    case ProjectType.Product:
+      return "WebsiNova product";
+
+    default:
+      return null;
+  }
+};
 
 const ProjectsSection1 = ({ id }: Readonly<{ id?: string }>) => {
   const searchParams = useSearchParams();
   const project = getProjectDetails(searchParams.get("id")!);
 
-  const renderProjectType = (type?: ProjectType) => {
-    switch (type) {
-      case ProjectType.Personal:
-        return "Personal Project";
+  if (!project) {
+    return (
+      <ResponsiveBox
+        as="section"
+        classNames="bg-[var(--bgColor)] min-h-[100dvh] justify-center"
+        id={id}
+      >
+        <ConstraintedBox classNames="px-5 sm:px-8 py-24 gap-6">
+          <p className="label text-[var(--primaryColor)]">No such project</p>
 
-      case ProjectType.JobWork:
-        return "Job Work";
+          <h1 className="font-display">That project isn&apos;t here.</h1>
 
-      case ProjectType.Freelance:
-        return "Freelance Project";
+          <p className="measure text-base/8 text-[var(--textColorLight)]">
+            The link may point at work that has since been taken down. The
+            current list is on the home page.
+          </p>
 
-      default:
-        return null;
-    }
-  };
+          <Link href="/#projects" className="app__filled_btn">
+            <FontAwesomeIcon icon={faArrowLeft} />
+            Back to projects
+          </Link>
+        </ConstraintedBox>
+      </ResponsiveBox>
+    );
+  }
 
   return (
-    <ResponsiveBox classNames="bg-[var(--dialogColor)]" id={id}>
-      <ConstraintedBox classNames="p-4">
-        <AppBar>
-          {project ? (
-            <Row classNames="items-center gap-2">
-              <Row classNames="w-[3rem] md:w-[3.5rem] p-2 aspect-square items-center justify-center border border-[var(--textColor30)] rounded-full overflow-hidden">
-                <Image
-                  src={project.icon}
-                  alt={`project-${project.title}`}
-                  width={100}
-                  height={100}
-                  sizes="100%"
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL="/images/placeholder.png"
-                  className="w-full h-full object-cover aspect-square"
-                />
-              </Row>
+    <ResponsiveBox
+      as="header"
+      classNames="bg-[var(--dialogColor)] border-b border-[var(--borderColor)]"
+      id={id}
+    >
+      <ConstraintedBox classNames="px-5 sm:px-8 pt-10 pb-14 gap-8">
+        <Link
+          href="/#projects"
+          className="inline-flex w-fit shrink-0 items-center gap-2 whitespace-nowrap text-sm/6 font-medium text-[var(--textColorLight)] transition-colors duration-200 ease-out hover:text-[var(--primaryColor)]"
+        >
+          <FontAwesomeIcon icon={faArrowLeft} />
+          All projects
+        </Link>
 
-              <Column>
-                <p className="text-lg/6 font-semibold">{project?.title}</p>
-                <p className="text-base/6 text-[var(--textColorLight)]">
-                  {renderProjectType(project.projectType)}
-                </p>
-              </Column>
-            </Row>
+        <div className="flex w-full flex-col items-start gap-5">
+          <div className="flex items-center gap-3">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[var(--borderColor)] bg-[var(--surfaceColor)] p-2.5">
+              <Image
+                src={project.icon}
+                alt=""
+                aria-hidden="true"
+                width={96}
+                height={96}
+                className="h-full w-full object-contain"
+              />
+            </span>
+
+            <div className="flex flex-col">
+              <span className="label">
+                {renderProjectType(project.projectType)}
+              </span>
+              <span className="label !text-[var(--textColorLight)]">
+                {project.repoType === RepoType.Private
+                  ? "Private repo"
+                  : "Public"}
+              </span>
+            </div>
+          </div>
+
+          <h1 className="font-display !text-4xl md:!text-5xl">
+            {project.title}
+          </h1>
+
+          {project.tags && project.tags.length > 0 ? (
+            <ul className="flex flex-wrap gap-1.5">
+              {project.tags.map((tag) => (
+                <li
+                  key={tag}
+                  className="mono rounded-xs border border-[var(--borderColor)] bg-[var(--surfaceColor)] px-2 py-0.5 text-xs/5 text-[var(--textColorLight)]"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
           ) : null}
-        </AppBar>
 
-        {project && project.sceenshots && project.sceenshots.length > 0 ? (
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            {project.url ? (
+              <Link
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="app__filled_btn"
+              >
+                Open project
+                <FontAwesomeIcon
+                  icon={faArrowRight}
+                  className="text-xs -rotate-45"
+                />
+              </Link>
+            ) : null}
+
+            {project.githubUrl ? (
+              <Link
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="app__outlined_btn"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+                View source
+              </Link>
+            ) : null}
+          </div>
+        </div>
+
+        {project.sceenshots && project.sceenshots.length > 0 ? (
           <ScreenshotGallery imageList={project.sceenshots} />
         ) : null}
       </ConstraintedBox>

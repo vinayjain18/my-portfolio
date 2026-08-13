@@ -1,50 +1,90 @@
 import ConstraintedBox from "@/components/core/ConstraintedBox";
 import ResponsiveBox from "@/components/core/ResponsiveBox";
-import Row from "@/components/core/Row";
 import SectionTitle from "@/components/common/SectionTitle";
+import Reveal from "@/components/common/Reveal";
 
 const capabilities = [
-  "Full-Stack Development",
-  "Backend Architecture",
-  "AI/RAG Systems",
-  "Chatbot Development",
-  "AI Consultancy",
-  "Cloud Architecture",
+  {
+    title: "RAG & agentic AI",
+    detail:
+      "Retrieval pipelines over Milvus and ChromaDB, document Q&A, drafting and comparison flows served through FastAPI.",
+  },
+  {
+    title: "Backend architecture",
+    detail:
+      "Serverless AWS Lambda and EC2 services, Express and Django APIs, MySQL and Postgres schema design.",
+  },
+  {
+    title: "Full-stack product",
+    detail:
+      "React and Next.js front ends wired to typed APIs, multi-tenant role-based access, payments and auth.",
+  },
+  {
+    title: "Leading delivery",
+    detail:
+      "Sprint planning for a team of five, client communication, scoping and estimation from first call to release.",
+  },
 ];
 
 const HomeSection2 = ({ id }: { id: string }) => {
   return (
     <ResponsiveBox
-      classNames="bg-[var(--dialogColor)] min-h-[calc(100vh-5rem)] items-center justify-center"
+      as="section"
+      ariaLabel="About Vinay Jain"
+      classNames="bg-[var(--dialogColor)] items-center justify-center"
       id={id}
     >
-      <ConstraintedBox classNames="p-4 py-16 z-20">
-        <SectionTitle>About</SectionTitle>
+      <ConstraintedBox classNames="px-5 sm:px-8 section__pad">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-12">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <SectionTitle index="01" eyebrow="About">
+                Tech lead turned founder.
+              </SectionTitle>
+            </div>
+          </div>
 
-        <div className="mt-12 max-w-3xl mx-auto text-center">
-          <p className="text-base/7 md:text-lg/8 text-[var(--textColor)]">
-            I&apos;m Vinay Jain, a Tech Lead turned founder. I started as a Python
-            developer, grew into full-stack development, and spent two years leading
-            a team of 5 engineers across a climatetech ESG platform and a legal tech
-            SaaS, owning architecture, sprint delivery, and client communication for
-            both. In June 2026 I started WebsiNova Technologies, where I now provide
-            full-stack and AI development services to clients directly. My focus is
-            RAG-based AI systems, agentic AI workflows, and microservice
-            architecture, and I build across the stack with React, Next.js,
-            Node.js, FastAPI, and Django.
-          </p>
+          <div className="lg:col-span-7 flex flex-col gap-10">
+            <Reveal className="flex flex-col gap-5">
+              <p className="text-lg/8 md:text-xl/9 text-[var(--textColor)] tracking-[-0.011em]">
+                I joined GreenFi as a Python and AI engineer, was promoted to
+                Senior Software Engineer and then Tech Lead, and a year later
+                became founding engineer on the same founder&apos;s second
+                product.
+              </p>
+
+              <p className="text-base/8 text-[var(--textColorLight)]">
+                As Tech Lead I ran a team of five across GreenFi, a climatetech
+                ESG platform, and Lejit AI, a legal tech SaaS I architected from
+                an empty repository — owning architecture, sprint delivery and
+                client communication for both, including taking over the GreenFi
+                codebase after the previous vendor left with no knowledge
+                transfer. In June 2026 I started WebsiNova Technologies, where I
+                take that work directly to clients: RAG-based AI systems,
+                agentic workflows and microservice architecture, built across
+                React, Next.js, Node.js, FastAPI and Django.
+              </p>
+            </Reveal>
+
+            <dl className="w-full border-t border-[var(--borderColorStrong)]">
+              {capabilities.map((capability, index) => (
+                <Reveal key={capability.title} step={index}>
+                  <div className="grid grid-cols-1 sm:grid-cols-[1.75rem_11.5rem_1fr] gap-x-4 gap-y-1 border-b border-[var(--borderColor)] py-5">
+                    <span className="label text-[var(--primaryColor)] pt-1.5">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <dt className="text-base/7 font-semibold text-[var(--textColor)]">
+                      {capability.title}
+                    </dt>
+                    <dd className="text-sm/7 text-[var(--textColorLight)]">
+                      {capability.detail}
+                    </dd>
+                  </div>
+                </Reveal>
+              ))}
+            </dl>
+          </div>
         </div>
-
-        <Row classNames="w-full flex-wrap !justify-center gap-3 mt-10">
-          {capabilities.map((capability) => (
-            <span
-              key={capability}
-              className="rounded-full border border-[var(--primaryColor50)] text-[var(--primaryColor)] px-3 py-1.5 text-sm/6 font-medium"
-            >
-              {capability}
-            </span>
-          ))}
-        </Row>
       </ConstraintedBox>
     </ResponsiveBox>
   );

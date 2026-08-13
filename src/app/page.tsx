@@ -12,6 +12,9 @@ const HomeSection6 = dynamic(() => import("@/components/home/Section6"));
 const FloatingNavbar = dynamic(() =>
   import("@/components/navbar/FloatingNavbar")
 );
+const MobileSectionNav = dynamic(() =>
+  import("@/components/navbar/MobileSectionNav")
+);
 const ScrollToTop = dynamic(() => import("@/components/common/ScrollToTop"));
 const Footer = dynamic(() => import("@/components/common/Footer"));
 const MobileCTABar = dynamic(() => import("@/components/common/MobileCTABar"));
@@ -20,6 +23,7 @@ const Home = () => {
   return (
     <PageBox>
       <FloatingNavbar className="app_nav" navItems={menuItems} />
+      <MobileSectionNav navItems={menuItems} />
       <HomeSection1 id="hero" />
       <HomeSection2 id="about" />
       <HomeSection3 id="experiences" />

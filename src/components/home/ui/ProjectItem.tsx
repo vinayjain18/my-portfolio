@@ -1,93 +1,108 @@
 import { RepoType, type IProjectItem } from "@/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Link from "next/link";
-import Row from "@/components/core/Row";
 import CardBox from "@/components/core/CardBox";
 
 const ProjectItem = ({ project }: { project: IProjectItem }) => {
   return (
-    <CardBox classNames="h-full p-6 gap-5 bg-[var(--textColor10)] slide_in">
-      <Row classNames="w-full !items-start !justify-between gap-3">
-        <Row classNames="!items-center gap-3">
-          <Row classNames="w-10 h-10 shrink-0 !items-center !justify-center rounded-[1rem] bg-[var(--dialogColor)] p-2">
+    <CardBox classNames="h-full p-7 md:p-8">
+      <div className="flex w-full flex-1 flex-col items-start gap-5">
+        <div className="flex w-full items-start justify-between gap-4">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[var(--borderColor)] bg-[var(--dialogColor)] p-2.5">
             <Image
               src={project.icon}
-              alt={`project-${project.title}`}
-              width={100}
-              height={100}
-              sizes="100%"
+              alt=""
+              aria-hidden="true"
+              width={96}
+              height={96}
               loading="lazy"
-              placeholder="blur"
-              blurDataURL={project.icon}
-              className="w-full h-full object-contain"
+              className="h-full w-full object-contain"
             />
-          </Row>
+          </span>
 
-          <p className="text-base/6 font-semibold">{project.title}</p>
-        </Row>
-
-        <p
-          className={`shrink-0 rounded-full py-0.5 px-2 text-[0.65rem]/6 font-semibold uppercase border ${
-            project.repoType === RepoType.Private
-              ? "text-[var(--errorColor)] border-[var(--errorColor50)]"
-              : "text-[var(--successColor)] border-[var(--successColor50)]"
-          }`}
-        >
-          {project.repoType === RepoType.Private ? "Private" : "Public"}
-        </p>
-      </Row>
-
-      <p className="text-sm/6 text-[var(--textColorLight)] line-clamp-4">
-        {project.description}
-      </p>
-
-      {project.tags && project.tags.length > 0 ? (
-        <Row classNames="w-full flex-wrap gap-2">
-          {project.tags.map((tag, i) => (
-            <p
-              key={`tag-${i}`}
-              className="rounded-full border border-[var(--textColor50)] py-0.5 px-2 text-xs/6 font-normal text-[var(--textColorLight)]"
-            >
-              {tag}
-            </p>
-          ))}
-        </Row>
-      ) : null}
-
-      <Row classNames="w-full !items-center gap-3 mt-auto pt-1">
-        {project.githubUrl ? (
-          <Link
-            href={project.githubUrl}
-            aria-label={`${project.title} GitHub URL`}
-            target="_blank"
-            className="text-sm/6 font-medium text-[var(--textColor)] hover:text-[var(--primaryColor)] inline-flex items-center gap-1.5"
+          <span
+            className={`label shrink-0 !text-[0.625rem] ${
+              project.repoType === RepoType.Private
+                ? "text-[var(--textColorLight)]"
+                : "text-[var(--successColor)]"
+            }`}
           >
-            <FontAwesomeIcon icon={faGithub} />
-            Code
-          </Link>
+            {project.repoType === RepoType.Private ? "Private repo" : "Public"}
+          </span>
+        </div>
+
+        <h3 className="font-display !text-xl md:!text-2xl mt-1">
+          {project.url ? (
+            <Link
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--textColor)] transition-colors duration-200 ease-out hover:text-[var(--primaryColor)]"
+            >
+              {project.title}
+            </Link>
+          ) : (
+            project.title
+          )}
+        </h3>
+
+        <p className="text-sm/7 text-[var(--textColorLight)]">
+          {project.description}
+        </p>
+
+        {project.tags && project.tags.length > 0 ? (
+          <ul className="flex w-full flex-wrap gap-1.5">
+            {project.tags.map((tag) => (
+              <li
+                key={tag}
+                className="rounded-xs border border-[var(--borderColor)] px-2 py-0.5 text-xs/5 font-medium text-[var(--textColorLight)] mono"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
         ) : null}
 
-        {project.url ? (
-          <Link
-            href={project.url}
-            aria-label={`${project.title} Project URL`}
-            target="_blank"
-            className="text-sm/6 font-medium text-[var(--primaryColor)] hover:underline inline-flex items-center gap-1.5"
-          >
-            View Project
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-xs" />
-          </Link>
-        ) : (
-          !project.githubUrl && (
+        <div className="mt-auto flex w-full items-center gap-5 pt-3">
+          {project.url ? (
+            <Link
+              href={project.url}
+              aria-label={`Open ${project.title}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="app__text_btn group/link"
+            >
+              View project
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                className="text-xs -rotate-45 transition-transform duration-200 ease-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+              />
+            </Link>
+          ) : null}
+
+          {project.githubUrl ? (
+            <Link
+              href={project.githubUrl}
+              aria-label={`${project.title} source on GitHub`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm/6 font-medium text-[var(--textColorLight)] transition-colors duration-200 ease-out hover:text-[var(--textColor)]"
+            >
+              <FontAwesomeIcon icon={faGithub} />
+              Source
+            </Link>
+          ) : null}
+
+          {!project.url && !project.githubUrl ? (
             <p className="text-sm/6 text-[var(--textColorLight)]">
-              Confidential client work
+              Client work under NDA
             </p>
-          )
-        )}
-      </Row>
+          ) : null}
+        </div>
+      </div>
     </CardBox>
   );
 };

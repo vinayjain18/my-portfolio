@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,66 +18,61 @@ const FloatingNavbar = ({
   const visibleSectionId = useVisibleSection();
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{
-          opacity: 1,
-          y: -100,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.2,
-        }}
-        className={cn(
-          "flex max-w-fit fixed top-4 inset-x-0 mx-auto border border-[var(--borderColor)] rounded-full bg-[var(--dialogColor50)] backdrop-blur-sm shadow-[var(--boxShadow)] z-[5000] px-3 md:pl-6 md:pr-2 py-2 items-center justify-center gap-5 md:gap-6",
-          className
-        )}
+    <motion.nav
+      aria-label="Primary"
+      initial={{ opacity: 0, y: -24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className={cn(
+        // Glass: translucent fill, hairline edge, and an inner highlight for edge refraction
+        "fixed top-4 inset-x-0 mx-auto hidden md:flex max-w-fit items-center justify-center gap-1 z-nav",
+        "rounded-full border border-[var(--whiteColor60)] bg-[var(--bgColor70)] backdrop-blur-xl",
+        "shadow-nav [box-shadow:inset_0_1px_0_0_var(--whiteColor80),var(--navBarShadow)]",
+        "px-1.5 py-1.5 md:pl-2 md:pr-1.5",
+        className
+      )}
+    >
+      {navItems.map((navItem: INavItem) => {
+        const isActive = navItem.link === `/#${visibleSectionId}`;
+
+        return (
+          <Link
+            key={navItem.link}
+            href={navItem.link}
+            aria-current={isActive ? "true" : undefined}
+            className={cn(
+              "relative flex items-center rounded-full px-3 py-1.5 transition-colors duration-200 ease-out",
+              isActive
+                ? "text-[var(--primaryColor)]"
+                : "text-[var(--textColorLight)] hover:text-[var(--textColor)]"
+            )}
+          >
+            {isActive ? (
+              <motion.span
+                layoutId="nav-active-pill"
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full bg-[var(--primaryColor10)]"
+                transition={{ type: "spring", stiffness: 380, damping: 32 }}
+              />
+            ) : null}
+
+            <span className="relative text-sm/6 font-medium">
+              {navItem.name}
+            </span>
+          </Link>
+        );
+      })}
+
+      <Link
+        href="https://cal.com/vinay-jain/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="!hidden md:!inline-flex app__filled_btn !rounded-full !px-4 !py-1.5 !text-sm !font-semibold ml-1"
       >
-        {navItems.map((navItem: INavItem, idx: number) => {
-          const isActive = navItem.link === `/#${visibleSectionId}`;
-
-          return (
-            <Link
-              key={`link=${idx}`}
-              href={navItem.link}
-              className={cn(
-                "relative flex items-center transition-colors",
-                isActive
-                  ? "text-[var(--primaryColor)]"
-                  : "text-[var(--textColor)] hover:text-[var(--primaryColor)]"
-              )}
-            >
-              <span className="block md:hidden text-base">
-                <FontAwesomeIcon
-                  id={`nav-item-icon${idx}`}
-                  icon={navItem.icon}
-                  titleId={`nav-item-icon-title${idx}`}
-                  title={navItem.name}
-                />
-              </span>
-              <span className="hidden md:block text-sm/6 lg:text-base font-medium">
-                {navItem.name}
-              </span>
-              {isActive ? (
-                <span className="absolute inset-x-0 -bottom-1.5 mx-auto h-px w-full bg-[var(--primaryColor)]" />
-              ) : null}
-            </Link>
-          );
-        })}
-
-        <Link
-          href="https://cal.com/vinay-jain/30min"
-          target="_blank"
-          className="!hidden md:!inline-flex app__filled_btn !rounded-full !px-4 !py-2 !text-sm/6 !font-semibold items-center gap-2"
-        >
-          <FontAwesomeIcon icon={faCalendarCheck} />
-          Book a Call
-        </Link>
-      </motion.div>
-    </AnimatePresence>
+        <FontAwesomeIcon icon={faCalendarCheck} />
+        Book a call
+      </Link>
+    </motion.nav>
   );
 };
 

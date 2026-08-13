@@ -16,6 +16,47 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+        display: ["var(--font-display)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
+      },
+      colors: {
+        paper: "var(--bgColor)",
+        surface: "var(--surfaceColor)",
+        sunken: "var(--dialogColor)",
+        ink: "var(--textColor)",
+        muted: "var(--textColorLight)",
+        line: "var(--borderColor)",
+        "line-strong": "var(--borderColorStrong)",
+        accent: "var(--primaryColor)",
+        "accent-dark": "var(--primaryColorDark)",
+      },
+      borderRadius: {
+        xs: "var(--radiusXs)",
+        sm: "var(--radiusSm)",
+        md: "var(--radiusMd)",
+        lg: "var(--radiusLg)",
+        xl: "var(--radiusXl)",
+      },
+      boxShadow: {
+        xs: "var(--shadowXs)",
+        sm: "var(--shadowSm)",
+        md: "var(--shadowMd)",
+        lg: "var(--shadowLg)",
+        nav: "var(--navBarShadow)",
+      },
+      zIndex: {
+        raised: "10",
+        sticky: "30",
+        nav: "50",
+        overlay: "60",
+        modal: "70",
+      },
+      transitionTimingFunction: {
+        out: "cubic-bezier(0.22, 1, 0.36, 1)",
+        spring: "cubic-bezier(0.34, 1.4, 0.64, 1)",
+      },
       animation: {
         move: "move 5s linear infinite",
       },
@@ -23,6 +64,9 @@ module.exports = {
         move: {
           "0%": { transform: "translateX(-200px)" },
           "100%": { transform: "translateX(200px)" },
+        },
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
         },
       },
     },
