@@ -9,7 +9,6 @@ const navLinks: INavLink[] = [
   { label: "Home", href: "#hero", section: "hero" },
   { label: "About", href: "#about", section: "about" },
   { label: "Building", href: "#building", section: "building" },
-  // Document order, so the highlight moves forward as you scroll.
   { label: "Experience", href: "#experience", section: "experience" },
   { label: "Work", href: "#work", section: "work" },
   { label: "Contact", href: "#contact", section: "contact" },
@@ -31,14 +30,7 @@ export const sectionIds = [
   "contact",
 ];
 
-/**
- * What the mobile menu button reads as in each section.
- *
- * The label says where you are; the sheet it opens says where you can go, so
- * these do not have to be the six nav items. Sections without an entry fall
- * back to "Menu" — which is what the hero deliberately does, so returning to
- * the top returns the button to its resting state.
- */
+/** Label per section. Anything without an entry falls back to "Menu". */
 export const sectionLabels: Record<string, string> = {
   about: "About",
   building: "Building",

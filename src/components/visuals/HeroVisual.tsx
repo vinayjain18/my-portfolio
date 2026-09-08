@@ -10,14 +10,7 @@ import {
 } from "framer-motion";
 import Waveform from "./Waveform";
 
-/**
- * An abstract composition, not a depiction of a real product.
- *
- * Three planes in CSS perspective: a document sheet, an interface card, and a
- * small voice chip — the three things the rest of the page is about. Kept
- * monochrome apart from a single terracotta mark, and driven by transforms
- * only so it stays cheap to animate.
- */
+/** An abstract composition, not a depiction of a real product. */
 const HeroVisual = () => {
   const reduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,7 +29,7 @@ const HeroVisual = () => {
   );
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    // Fine pointers only. On touch this would fire on every scroll-drag.
+    // Fine pointers only; on touch this fires on every scroll-drag.
     if (reduceMotion || event.pointerType !== "mouse") return;
 
     const bounds = containerRef.current?.getBoundingClientRect();

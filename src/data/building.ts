@@ -1,10 +1,6 @@
 /**
- * The two things currently being built.
- *
- * Every claim here traces to something verifiable: Karyalo from the product
- * itself, Voice Agent from its public README at
- * https://github.com/vinayjain18/voice-agent. Nothing about adoption, revenue,
- * customers or performance beyond what the repo itself states.
+ * Karyalo from the product itself; Voice Agent from its public README at
+ * https://github.com/vinayjain18/voice-agent.
  */
 
 export interface IBuildingItem {
@@ -56,10 +52,7 @@ export const voiceAgentUseCases = [
   { title: "Callbacks", detail: "Books them from the number on the call." },
 ];
 
-/**
- * Capabilities stated in the repository README. Kept as short factual lines —
- * no benchmark claims beyond what the project documents about itself.
- */
+/** Capabilities stated in the repository README. */
 export const voiceAgentCapabilities = [
   {
     title: "Sub-two-second replies",
@@ -101,11 +94,7 @@ export const voiceAgentStack = [
   "FastAPI",
 ];
 
-/**
- * Karyalo's contract lifecycle, in the product's own four steps.
- * These are the stages the product describes, presented as a flow —
- * the interface drawn alongside them is a diagram, not a screenshot.
- */
+/** Karyalo's contract lifecycle, in the product's own four steps. */
 export const karyaloFlow = [
   {
     step: "Draft",

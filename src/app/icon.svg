@@ -1,16 +1,5 @@
 <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <!--
-    The header mark: "VJ" with the terracotta full stop.
-
-    Browsers apply prefers-color-scheme inside an SVG favicon, so the tile
-    follows the browser chrome the same way the site follows the OS. The
-    attribute fills below are the light values, which is what any context that
-    ignores the media query (an <img>, a link preview) will render.
-
-    A favicon cannot load a webfont, so this falls back to whatever bold
-    grotesque the platform has. The .ico beside it is rasterised from the real
-    Space Grotesk.
-  -->
+  <!-- The header mark: "VJ" with the terracotta full stop. -->
   <style>
     @media (prefers-color-scheme: dark) {
       .tile { fill: #100F0E; }

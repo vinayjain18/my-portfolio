@@ -1,10 +1,6 @@
 /**
- * Runs before first paint, inlined in <head>.
- *
- * "system" is represented by the *absence* of the data-theme attribute, so the
- * prefers-color-scheme media query in globals.scss is what resolves it. That
- * keeps a single source of truth and means the system case costs no JS at all
- * beyond this read.
+ * Runs before first paint. "system" is the absence of data-theme, so the
+ * prefers-color-scheme query in globals.scss resolves it.
  */
 export const THEME_STORAGE_KEY = "vj-theme";
 

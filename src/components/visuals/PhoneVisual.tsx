@@ -3,10 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Waveform from "./Waveform";
 
-/**
- * A device frame drawn in CSS, holding a live waveform. It stands for "a call
- * is happening" — it is not a screenshot of an interface that exists.
- */
+/** A CSS device frame. Not a screenshot of an interface that exists. */
 const PhoneVisual = () => {
   const reduceMotion = useReducedMotion();
 

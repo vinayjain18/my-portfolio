@@ -115,8 +115,7 @@
   --primaryColor100: rgba(176, 82, 42, 1);
   --primaryColor: rgba(176, 82, 42, 1);
   --primaryColorDark: rgb(140, 63, 30);
-  /* Text/icon colour that sits ON the accent. Flips with the theme, because
-     the dark-mode accent is light enough that white on it fails contrast. */
+  /* Sits ON the accent. Flips with the theme; white fails contrast in dark. */
   --onPrimary: rgba(255, 253, 249, 1);
 
   --secondaryColor10: rgba(201, 138, 75, 0.1);
@@ -656,18 +655,12 @@ small {
   }
 }
 
-/* ============================================================
-   DARK THEME
-   A designed palette, not an inversion. Same warm neutral family
-   pulled down to near-black, same terracotta accent lifted just
-   enough to hold contrast against it.
-   ============================================================ */
+/* ---- Dark theme: a designed palette, not an inversion ---- */
 
 @mixin dark-tokens {
   color-scheme: dark;
 
-  /* Sunken / alternating band. In light this is darker than the page;
-     in dark it has to be lighter, or the rhythm inverts. */
+  /* Alternating band: darker than the page in light, lighter in dark. */
   --dialogColor10: rgba(23, 22, 20, 0.1);
   --dialogColor20: rgba(23, 22, 20, 0.2);
   --dialogColor30: rgba(23, 22, 20, 0.3);
@@ -771,8 +764,7 @@ small {
   --textColorLight100: rgba(170, 163, 154, 1);
   --textColorLight: rgba(170, 163, 154, 1);
 
-  /* Shadow is nearly invisible on black. Depth comes from borders and
-     surface steps instead, with just enough shadow to seat a card. */
+  /* Depth comes from borders and surface steps; shadow only seats a card. */
   --shadowXs: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadowSm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px -2px rgba(0, 0, 0, 0.5);
   --shadowMd: 0 2px 4px -2px rgba(0, 0, 0, 0.5),
@@ -810,10 +802,8 @@ small {
   }
 }
 
-/* Single-colour brand marks (GitHub, Next.js, OpenAI, Socket.io) ship as pure
-   black or pure white, so one theme always swallows them. brightness(0)
-   flattens whatever they were to black; dark mode then inverts that to white.
-   Colour logos are left exactly as their owners drew them. */
+/* Single-colour brand marks ship as pure black or pure white, so one theme
+   always swallows them. brightness(0) flattens them; dark mode inverts. */
 .logo-mono {
   filter: brightness(0) opacity(0.78);
   transition: filter 200ms var(--easeOut);

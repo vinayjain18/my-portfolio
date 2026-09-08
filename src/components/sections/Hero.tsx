@@ -10,8 +10,6 @@ const enterFrom = (reduceMotion: boolean | null) =>
 const Hero = () => {
   const reduceMotion = useReducedMotion();
 
-  // One shared clock for the load sequence, so the order is explicit rather
-  // than emergent: heading, supporting line, CTAs, then the visual.
   const step = (index: number) => ({
     initial: enterFrom(reduceMotion),
     animate: { opacity: 1, y: 0 },
@@ -28,7 +26,6 @@ const Hero = () => {
       aria-label="Introduction"
       className="relative flex min-h-[100svh] w-full items-center overflow-hidden bg-[var(--bgColor)]"
     >
-      {/* Ambient warmth, off-centre so it does not read as a symmetrical glow */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-[14rem] -top-[16rem] h-[44rem] w-[44rem] rounded-full opacity-[0.5] blur-3xl"

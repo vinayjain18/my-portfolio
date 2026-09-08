@@ -13,8 +13,7 @@ const formatRange = (item: IExperienceItem) =>
 const Entry = ({ item, index }: { item: IExperienceItem; index: number }) => (
   <Reveal step={Math.min(index, 4)}>
     <li className="relative grid grid-cols-1 gap-x-8 gap-y-4 pb-12 sm:grid-cols-[9.5rem_1fr] md:grid-cols-[11rem_1fr]">
-      {/* Node on the rail. The current role gets a ring as well as the accent
-          colour, so "now" is not signalled by hue alone. */}
+      {/* Node on the rail. */}
       <span
         aria-hidden="true"
         className="absolute -left-[1.6875rem] top-1.5 flex h-3 w-3 items-center justify-center sm:-left-[2.1875rem]"

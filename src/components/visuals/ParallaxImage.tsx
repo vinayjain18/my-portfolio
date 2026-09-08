@@ -15,10 +15,7 @@ interface ParallaxImageProps {
   className?: string;
 }
 
-/**
- * An image that drifts slightly slower than the page inside a fixed frame.
- * The image is oversized so the drift never exposes an edge.
- */
+/** Drifts slower than the page inside a fixed frame; the image is oversized so no edge shows. */
 const ParallaxImage = ({
   src,
   alt,

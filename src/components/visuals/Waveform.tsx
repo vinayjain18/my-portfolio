@@ -3,10 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/utils/cn";
 
-/**
- * A fixed set of bar heights, so the shape is a designed silhouette rather
- * than noise — and so server and client render identically.
- */
+/** Fixed bar heights: a designed silhouette, and identical on server and client. */
 const BARS = [
   0.22, 0.4, 0.68, 0.94, 0.72, 0.46, 0.3, 0.55, 0.82, 1, 0.78, 0.5, 0.34, 0.6,
   0.88, 0.66, 0.42, 0.26, 0.48, 0.7, 0.9, 0.62, 0.38, 0.24,
@@ -47,8 +44,6 @@ const Waveform = ({ animate = true, className, barClassName }: WaveformProps) =>
                   duration: 1.6,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  // Offsetting each bar is what makes it read as a travelling
-                  // wave instead of a bar chart pulsing in unison.
                   delay: (index % 8) * 0.09,
                 }
               : { duration: 0 }

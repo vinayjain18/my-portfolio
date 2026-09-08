@@ -23,10 +23,7 @@ const icons: IconDefinition[] = [
   faSignature,
 ];
 
-/**
- * A diagram of the contract lifecycle, drawn from the product's own four
- * stages. Deliberately abstract — no real Karyalo screens are reproduced here.
- */
+/** A diagram of the contract lifecycle. No real Karyalo screens are reproduced. */
 const ContractDiagram = () => {
   const reduceMotion = useReducedMotion();
   const trackRef = useRef<HTMLDivElement>(null);
@@ -36,8 +33,6 @@ const ContractDiagram = () => {
     offset: ["start 0.85", "center 0.55"],
   });
 
-  // The connector draws itself as the section arrives, so the four stages read
-  // as one flow rather than four unrelated tiles.
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (

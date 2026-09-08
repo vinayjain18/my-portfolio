@@ -16,10 +16,6 @@ import Reveal from "@/components/common/Reveal";
 import Waveform from "@/components/visuals/Waveform";
 import building, { type IBuildingItem } from "@/data/building";
 
-/**
- * Card illustrations. Both sit in a panel of the same size and weight, so
- * neither product reads as the more finished of the two.
- */
 const ContractMark = () => (
   <div aria-hidden="true" className="relative flex h-24 w-full items-center">
     <div className="w-full rounded-lg border border-[var(--borderColorStrong)] bg-[var(--surfaceRaised)] px-3.5 py-3 shadow-sm">

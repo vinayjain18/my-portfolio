@@ -15,11 +15,6 @@ import useActiveSection from "@/hooks/useActiveSection";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { cn } from "@/utils/cn";
 
-/**
- * Which nav item should be highlighted for a given section. The showcase
- * sections sit under "Building", and the closing note under "Work", so the
- * underline never falls back to the top of the page mid-scroll.
- */
 const navGroup: Record<string, string> = {
   hero: "hero",
   about: "about",
@@ -34,7 +29,6 @@ const navGroup: Record<string, string> = {
 };
 
 const Header = () => {
-  // One scroll listener drives both the nav underline and the mobile label.
   const tracked = useMemo(() => sectionIds, []);
   const section = useActiveSection(tracked);
   const activeNav = navGroup[section] ?? "hero";
@@ -54,7 +48,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", read);
   }, []);
 
-  // Escape closes the sheet and hands focus back to the control that opened it.
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -70,8 +63,6 @@ const Header = () => {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
-  // Reads "Menu" at the top of the page, the section name once you are into
-  // it, and "Close" while the sheet is open.
   const menuLabel = menuOpen
     ? "Close"
     : sectionLabels[section] ?? MENU_LABEL;
@@ -107,8 +98,6 @@ const Header = () => {
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
                       "relative inline-flex items-center rounded-full px-3 py-2 text-sm transition-colors duration-200 ease-out",
-                      // Weight carries the state as well as colour, so the
-                      // active item is not signalled by hue alone.
                       isActive
                         ? "font-semibold text-[var(--textColor)]"
                         : "font-medium text-[var(--textColorLight)] hover:text-[var(--textColor)]"
@@ -155,9 +144,7 @@ const Header = () => {
             onClick={() => setMenuOpen((open) => !open)}
             className="inline-flex h-10 shrink-0 items-center justify-between gap-2 rounded-full border border-[var(--borderColorStrong)] bg-[var(--surfaceColor)] pl-3.5 pr-3 text-sm font-medium text-[var(--textColor)] md:hidden"
           >
-            {/* Fixed width, or the header reflows every time the label
-                changes as you scroll. Narrower on small phones, where the
-                logo, the CTA and this button are competing for the bar. */}
+            {/* Fixed width, so the bar does not reflow as the label changes. */}
             <span className="w-[4.5rem] truncate text-left min-[380px]:w-[5.5rem]">
               {menuLabel}
             </span>

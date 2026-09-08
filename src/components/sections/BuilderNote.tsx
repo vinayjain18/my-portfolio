@@ -1,12 +1,6 @@
 import Reveal from "@/components/common/Reveal";
 
-/**
- * Deliberately the quietest section on the page.
- *
- * Everything stated here is drawn from the experience data — the internship,
- * the handover-less codebase, the team of five, the empty repository, the
- * company. No hobbies, no interests, no invented personal detail.
- */
+/** Everything here is drawn from the experience data. No invented personal detail. */
 const loop = ["Build", "Solve", "Iterate"];
 
 const BuilderNote = () => {

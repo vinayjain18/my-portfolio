@@ -103,8 +103,6 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  // The browser chrome follows the theme too, so a dark page does not sit
-  // under a cream address bar.
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#faf7f1" },
     { media: "(prefers-color-scheme: dark)", color: "#100f0e" },
@@ -119,8 +117,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
       className={`${manrope.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        {/* Must run before first paint, or a dark-mode visitor sees a flash of
-            the light theme. Not next/script — that is too late by design. */}
+        {/* Must run before first paint; next/script is too late by design. */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
 
         <Script

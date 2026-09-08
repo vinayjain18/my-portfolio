@@ -102,8 +102,7 @@ const ProjectCard = ({
     <div className={shellClass}>
       {content}
 
-      {/* One link covering the card, so the whole surface is clickable but
-          screen readers and the tab order still see a single named link. */}
+      {/* Overlay link, so the whole card is clickable. */}
       <Link
         href={href}
         target="_blank"
@@ -113,8 +112,7 @@ const ProjectCard = ({
         <span className="sr-only">{project.title} — opens in a new tab</span>
       </Link>
 
-      {/* A second, real link for the repo where the card already points at a
-          live product. Sits above the overlay so it stays clickable. */}
+      {/* Sits above the overlay so it stays clickable. */}
       {project.url && project.githubUrl ? (
         <Link
           href={project.githubUrl}

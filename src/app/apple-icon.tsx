@@ -6,12 +6,8 @@ export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
 /**
- * The same "VJ." mark as the header and the favicon.
- *
- * iOS applies its own rounded mask, so this is drawn edge to edge with no
- * rounding of its own. The bold face has to be handed to ImageResponse
- * explicitly — without it the renderer has no bold grotesque and silently
- * falls back to a thin default.
+ * The same "VJ." mark as the header and the favicon. The bold face has to be
+ * passed to ImageResponse explicitly, or it falls back to a thin default.
  */
 const AppleIcon = async () => {
   const spaceGrotesk = await readFile(

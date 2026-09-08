@@ -2,8 +2,6 @@ import dynamic from "next/dynamic";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 
-// Everything below the fold loads on demand — the hero is the only thing that
-// has to be in the first paint.
 const About = dynamic(() => import("@/components/sections/About"));
 const CurrentlyBuilding = dynamic(
   () => import("@/components/sections/CurrentlyBuilding")

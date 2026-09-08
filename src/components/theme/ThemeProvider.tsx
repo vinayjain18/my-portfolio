@@ -34,8 +34,7 @@ const applyChoice = (choice: ThemeChoice) => {
 };
 
 const ThemeProvider = ({ children }: Readonly<{ children: ReactNode }>) => {
-  // Always "system" on the server and on the first client render, so the markup
-  // matches. The real choice is read in an effect, after hydration.
+  // "system" on the first render, so server and client markup match.
   const [choice, setChoiceState] = useState<ThemeChoice>("system");
   const [resolved, setResolved] = useState<"light" | "dark" | null>(null);
 
@@ -45,7 +44,7 @@ const ThemeProvider = ({ children }: Readonly<{ children: ReactNode }>) => {
     try {
       stored = localStorage.getItem(THEME_STORAGE_KEY);
     } catch {
-      // Private mode, blocked site data — system preference still works.
+      // Private mode, or blocked site data.
     }
 
     if (stored === "light" || stored === "dark") {
@@ -53,7 +52,6 @@ const ThemeProvider = ({ children }: Readonly<{ children: ReactNode }>) => {
     }
   }, []);
 
-  // Track what is actually on screen, so the toggle can show it.
   useEffect(() => {
     const query = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -81,7 +79,7 @@ const ThemeProvider = ({ children }: Readonly<{ children: ReactNode }>) => {
     try {
       localStorage.setItem(THEME_STORAGE_KEY, next);
     } catch {
-      // Preference just will not persist. The switch still works this session.
+      // Preference will not persist beyond this session.
     }
   }, []);
 
