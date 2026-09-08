@@ -63,11 +63,19 @@ export interface IProjectItem {
   about?: string;
   /** Short "step — detail" lines shown on the lead project card. */
   highlights?: string[];
+  /** Card-length version of `description`. Falls back to `description`. */
+  summary?: string;
+  /** Shown larger in the Selected Work grid. */
+  featured?: boolean;
+  /** Single-colour icon — recoloured to the text colour so it survives both themes. */
+  monoIcon?: boolean;
 }
 
 export interface ISkillListItem {
   title: string;
   items: ISkillItem[];
+  /** Kept out of the engineering toolkit grid. */
+  nonTechnical?: boolean;
 }
 
 export enum SkillLevel {
@@ -80,6 +88,12 @@ export interface ISkillItem {
   title: string;
   level?: SkillLevel;
   icon?: string;
+  /**
+   * Single-colour brand mark. These are drawn in pure black or pure white and
+   * disappear against one theme or the other, so they get recoloured to the
+   * current text colour instead of being shown as-authored.
+   */
+  mono?: boolean;
 }
 
 export interface ISocialLinkItem {

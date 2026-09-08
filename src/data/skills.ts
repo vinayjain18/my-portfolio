@@ -26,6 +26,7 @@ const skills: ISkillListItem[] = [
     items: [
       {
         title: "Next.js",
+        mono: true,
         level: SkillLevel.Expert,
         icon: "/skills/nextjs.png",
       },
@@ -66,6 +67,7 @@ const skills: ISkillListItem[] = [
       },
       {
         title: "Socket.io",
+        mono: true,
         level: SkillLevel.Intermediate,
         icon: "/skills/socket-io.png",
       },
@@ -81,6 +83,7 @@ const skills: ISkillListItem[] = [
     items: [
       {
         title: "OpenAI",
+        mono: true,
         level: SkillLevel.Expert,
         icon: "/skills/chatgpt.svg",
       },
@@ -136,6 +139,7 @@ const skills: ISkillListItem[] = [
       },
       {
         title: "GitHub",
+        mono: true,
         level: SkillLevel.Expert,
         icon: "/skills/github.svg",
       },
@@ -158,6 +162,7 @@ const skills: ISkillListItem[] = [
   },
   {
     title: "Nontechnical Skills",
+    nonTechnical: true,
     items: [
       {
         title: "Problem Solving",

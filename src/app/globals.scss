@@ -115,6 +115,9 @@
   --primaryColor100: rgba(176, 82, 42, 1);
   --primaryColor: rgba(176, 82, 42, 1);
   --primaryColorDark: rgb(140, 63, 30);
+  /* Text/icon colour that sits ON the accent. Flips with the theme, because
+     the dark-mode accent is light enough that white on it fails contrast. */
+  --onPrimary: rgba(255, 253, 249, 1);
 
   --secondaryColor10: rgba(201, 138, 75, 0.1);
   --secondaryColor20: rgba(201, 138, 75, 0.2);
@@ -491,7 +494,7 @@ small {
 
   border: 1px solid transparent;
   background: var(--primaryColor);
-  color: var(--whiteColor);
+  color: var(--onPrimary);
   box-shadow: var(--shadowSm);
 
   &:hover:not(:disabled) {
@@ -650,5 +653,192 @@ small {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   DARK THEME
+   A designed palette, not an inversion. Same warm neutral family
+   pulled down to near-black, same terracotta accent lifted just
+   enough to hold contrast against it.
+   ============================================================ */
+
+@mixin dark-tokens {
+  color-scheme: dark;
+
+  /* Sunken / alternating band. In light this is darker than the page;
+     in dark it has to be lighter, or the rhythm inverts. */
+  --dialogColor10: rgba(23, 22, 20, 0.1);
+  --dialogColor20: rgba(23, 22, 20, 0.2);
+  --dialogColor30: rgba(23, 22, 20, 0.3);
+  --dialogColor40: rgba(23, 22, 20, 0.4);
+  --dialogColor50: rgba(23, 22, 20, 0.5);
+  --dialogColor60: rgba(23, 22, 20, 0.6);
+  --dialogColor70: rgba(23, 22, 20, 0.7);
+  --dialogColor80: rgba(23, 22, 20, 0.8);
+  --dialogColor90: rgba(23, 22, 20, 0.9);
+  --dialogColor100: rgba(23, 22, 20, 1);
+  --dialogColor: rgb(23, 22, 20);
+
+  --bgColor10: rgba(16, 15, 14, 0.1);
+  --bgColor20: rgba(16, 15, 14, 0.2);
+  --bgColor30: rgba(16, 15, 14, 0.3);
+  --bgColor40: rgba(16, 15, 14, 0.4);
+  --bgColor50: rgba(16, 15, 14, 0.5);
+  --bgColor60: rgba(16, 15, 14, 0.6);
+  --bgColor70: rgba(16, 15, 14, 0.7);
+  --bgColor80: rgba(16, 15, 14, 0.8);
+  --bgColor90: rgba(16, 15, 14, 0.9);
+  --bgColor: rgba(16, 15, 14, 1);
+
+  --surfaceColor: #1c1a18;
+  --surfaceRaised: #232120;
+  --surfaceSunken: #131211;
+
+  --lightGrayColor: #232120;
+  --lighterGrayColor: #2a2724;
+
+  --borderColor: rgba(45, 42, 38, 1);
+  --borderColorStrong: rgba(66, 61, 55, 1);
+  --darkGrayColor: rgb(138, 130, 121);
+
+  --linkColor: rgba(126, 168, 197, 1);
+
+  /* Terracotta lifted for legibility on near-black; same hue family. */
+  --primaryColor10: rgba(216, 130, 78, 0.1);
+  --primaryColor20: rgba(216, 130, 78, 0.2);
+  --primaryColor30: rgba(216, 130, 78, 0.3);
+  --primaryColor40: rgba(216, 130, 78, 0.4);
+  --primaryColor50: rgba(216, 130, 78, 0.5);
+  --primaryColor60: rgba(216, 130, 78, 0.6);
+  --primaryColor70: rgba(216, 130, 78, 0.7);
+  --primaryColor80: rgba(216, 130, 78, 0.8);
+  --primaryColor90: rgba(216, 130, 78, 0.9);
+  --primaryColor100: rgba(216, 130, 78, 1);
+  --primaryColor: rgba(216, 130, 78, 1);
+  --primaryColorDark: rgb(196, 110, 60);
+  --onPrimary: rgba(20, 15, 11, 1);
+
+  --secondaryColor10: rgba(212, 160, 105, 0.1);
+  --secondaryColor20: rgba(212, 160, 105, 0.2);
+  --secondaryColor30: rgba(212, 160, 105, 0.3);
+  --secondaryColor40: rgba(212, 160, 105, 0.4);
+  --secondaryColor50: rgba(212, 160, 105, 0.5);
+  --secondaryColor60: rgba(212, 160, 105, 0.6);
+  --secondaryColor70: rgba(212, 160, 105, 0.7);
+  --secondaryColor80: rgba(212, 160, 105, 0.8);
+  --secondaryColor90: rgba(212, 160, 105, 0.9);
+  --secondaryColor100: rgba(212, 160, 105, 1);
+  --secondaryColor: rgba(212, 160, 105, 1);
+
+  --successColor10: rgba(110, 170, 124, 0.1);
+  --successColor20: rgba(110, 170, 124, 0.2);
+  --successColor30: rgba(110, 170, 124, 0.3);
+  --successColor40: rgba(110, 170, 124, 0.4);
+  --successColor50: rgba(110, 170, 124, 0.5);
+  --successColor60: rgba(110, 170, 124, 0.6);
+  --successColor70: rgba(110, 170, 124, 0.7);
+  --successColor80: rgba(110, 170, 124, 0.8);
+  --successColor90: rgba(110, 170, 124, 0.9);
+  --successColor100: rgba(110, 170, 124, 1);
+  --successColor: rgba(110, 170, 124, 1);
+
+  --errorColor: rgba(206, 106, 98, 1);
+  --warningColor: rgba(214, 160, 82, 1);
+
+  --textColor10: rgba(244, 241, 236, 0.1);
+  --textColor20: rgba(244, 241, 236, 0.2);
+  --textColor30: rgba(244, 241, 236, 0.3);
+  --textColor40: rgba(244, 241, 236, 0.4);
+  --textColor50: rgba(244, 241, 236, 0.5);
+  --textColor60: rgba(244, 241, 236, 0.6);
+  --textColor70: rgba(244, 241, 236, 0.7);
+  --textColor80: rgba(244, 241, 236, 0.8);
+  --textColor90: rgba(244, 241, 236, 0.9);
+  --textColor100: rgba(244, 241, 236, 1);
+  --textColor: rgba(244, 241, 236, 1);
+
+  /* 7.1:1 on the page background — secondary text still has to be read. */
+  --textColorLight10: rgba(170, 163, 154, 0.1);
+  --textColorLight20: rgba(170, 163, 154, 0.2);
+  --textColorLight30: rgba(170, 163, 154, 0.3);
+  --textColorLight40: rgba(170, 163, 154, 0.4);
+  --textColorLight50: rgba(170, 163, 154, 0.5);
+  --textColorLight60: rgba(170, 163, 154, 0.6);
+  --textColorLight70: rgba(170, 163, 154, 0.7);
+  --textColorLight80: rgba(170, 163, 154, 0.8);
+  --textColorLight90: rgba(170, 163, 154, 0.9);
+  --textColorLight100: rgba(170, 163, 154, 1);
+  --textColorLight: rgba(170, 163, 154, 1);
+
+  /* Shadow is nearly invisible on black. Depth comes from borders and
+     surface steps instead, with just enough shadow to seat a card. */
+  --shadowXs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadowSm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px -2px rgba(0, 0, 0, 0.5);
+  --shadowMd: 0 2px 4px -2px rgba(0, 0, 0, 0.5),
+    0 10px 26px -14px rgba(0, 0, 0, 0.8);
+  --shadowLg: 0 4px 8px -4px rgba(0, 0, 0, 0.6),
+    0 28px 60px -32px rgba(0, 0, 0, 0.9);
+  --navBarShadow: 0 1px 2px rgba(0, 0, 0, 0.5),
+    0 12px 32px -18px rgba(0, 0, 0, 0.9);
+}
+
+/* Explicit choice wins in both directions. */
+:root[data-theme="dark"] {
+  @include dark-tokens;
+}
+
+/* System preference, unless the user has explicitly chosen light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark-tokens;
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+/* Grain reads as dust on a dark field — pull it back. */
+:root[data-theme="dark"] body::after {
+  opacity: 0.02;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body::after {
+    opacity: 0.02;
+  }
+}
+
+/* Single-colour brand marks (GitHub, Next.js, OpenAI, Socket.io) ship as pure
+   black or pure white, so one theme always swallows them. brightness(0)
+   flattens whatever they were to black; dark mode then inverts that to white.
+   Colour logos are left exactly as their owners drew them. */
+.logo-mono {
+  filter: brightness(0) opacity(0.78);
+  transition: filter 200ms var(--easeOut);
+}
+
+.group:hover .logo-mono {
+  filter: brightness(0) opacity(1);
+}
+
+@mixin logo-mono-dark {
+  .logo-mono {
+    filter: brightness(0) invert(1) opacity(0.72);
+  }
+
+  .group:hover .logo-mono {
+    filter: brightness(0) invert(1) opacity(0.95);
+  }
+}
+
+:root[data-theme="dark"] {
+  @include logo-mono-dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include logo-mono-dark;
   }
 }

@@ -5,6 +5,8 @@ import { Metadata, Viewport } from "next";
 import Script from "next/script";
 import LocalConfig from "@/constants/config";
 import { WebVitals } from "@/components/common/WebVitals";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+import { themeScript } from "@/components/theme/theme-script";
 
 const manrope = Manrope({
   weight: ["400", "500", "600", "700", "800"],
@@ -38,7 +40,7 @@ const siteUrl = "https://vinayjain.dev";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Vinay Jain — AI & full-stack engineer",
+    default: "Vinay Jain — Software engineer, builder, founder",
     template: "%s — Vinay Jain",
   },
   description:
@@ -53,9 +55,9 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "Vinay Jain",
-    title: "Vinay Jain — AI & full-stack engineer",
+    title: "Vinay Jain — Software engineer, builder, founder",
     description:
-      "Tech lead turned founder. I build RAG-based AI systems, agentic workflows and full-stack products for clients through WebsiNova Technologies.",
+      "Tech lead turned founder. I build RAG-based AI systems, agentic workflows and full-stack products, and I'm currently building Karyalo and AI voice agents.",
     locale: "en_US",
     images: [
       {
@@ -68,7 +70,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vinay Jain — AI & full-stack engineer",
+    title: "Vinay Jain — Software engineer, builder, founder",
     description:
       "Tech lead turned founder. RAG-based AI systems, agentic workflows and full-stack product engineering.",
     creator: "@vinayjn18",
@@ -89,6 +91,8 @@ export const metadata: Metadata = {
     "vinay jain",
     "vinayjain18",
     "WebsiNova Technologies",
+    "Karyalo",
+    "AI voice agents",
     "full stack developer",
     "AI developer",
     "RAG systems",
@@ -99,17 +103,26 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf7f1",
-  colorScheme: "light",
+  // The browser chrome follows the theme too, so a dark page does not sit
+  // under a cream address bar.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf7f1" },
+    { media: "(prefers-color-scheme: dark)", color: "#100f0e" },
+  ],
 };
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${manrope.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        {/* Must run before first paint, or a dark-mode visitor sees a flash of
+            the light theme. Not next/script — that is too late by design. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${LocalConfig.values.NEXT_PUBLIC_GTAG_ID}`}
@@ -138,7 +151,9 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
           Skip to content
         </a>
 
-        <main id="main-content">{children}</main>
+        <ThemeProvider>
+          <main id="main-content">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

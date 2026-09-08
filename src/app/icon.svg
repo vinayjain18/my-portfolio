@@ -1,14 +1,36 @@
-<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="50" cy="50" r="46" fill="none" stroke="#BF5B26" stroke-width="6" />
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    The header mark: "VJ" with the terracotta full stop.
+
+    Browsers apply prefers-color-scheme inside an SVG favicon, so the tile
+    follows the browser chrome the same way the site follows the OS. The
+    attribute fills below are the light values, which is what any context that
+    ignores the media query (an <img>, a link preview) will render.
+
+    A favicon cannot load a webfont, so this falls back to whatever bold
+    grotesque the platform has. The .ico beside it is rasterised from the real
+    Space Grotesk.
+  -->
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #100F0E; }
+      .ink  { fill: #F4F1EC; }
+      .dot  { fill: #D8824E; }
+    }
+  </style>
+
+  <rect class="tile" width="64" height="64" rx="14" fill="#FAF7F1" />
   <text
-    x="50"
-    y="53"
+    class="ink"
+    x="27.5"
+    y="32"
     text-anchor="middle"
     dominant-baseline="central"
-    font-family="Arial, Helvetica, sans-serif"
+    font-family="'Space Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif"
     font-weight="700"
     font-size="38"
-    letter-spacing="-1"
-    fill="#BF5B26"
+    letter-spacing="-1.6"
+    fill="#221E1A"
   >VJ</text>
+  <circle class="dot" cx="52" cy="42.5" r="5.4" fill="#B0522A" />
 </svg>

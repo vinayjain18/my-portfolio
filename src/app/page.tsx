@@ -1,39 +1,46 @@
 import dynamic from "next/dynamic";
-import PageBox from "@/components/core/PageBox";
-import { menuItems } from "@/data/navMenus";
-import HomeSection1 from "@/components/home/Section1";
+import Header from "@/components/layout/Header";
+import Hero from "@/components/sections/Hero";
 
-const HomeSection2 = dynamic(() => import("@/components/home/Section2"));
-const HomeSection3 = dynamic(() => import("@/components/home/Section3"));
-const HomeSection4 = dynamic(() => import("@/components/home/Section4"));
-const HomeSection5 = dynamic(() => import("@/components/home/Section5"));
-const HomeSection6 = dynamic(() => import("@/components/home/Section6"));
-
-const FloatingNavbar = dynamic(() =>
-  import("@/components/navbar/FloatingNavbar")
+// Everything below the fold loads on demand — the hero is the only thing that
+// has to be in the first paint.
+const About = dynamic(() => import("@/components/sections/About"));
+const CurrentlyBuilding = dynamic(
+  () => import("@/components/sections/CurrentlyBuilding")
 );
-const MobileSectionNav = dynamic(() =>
-  import("@/components/navbar/MobileSectionNav")
+const KaryaloShowcase = dynamic(
+  () => import("@/components/sections/KaryaloShowcase")
 );
+const VoiceAgentsShowcase = dynamic(
+  () => import("@/components/sections/VoiceAgentsShowcase")
+);
+const Toolkit = dynamic(() => import("@/components/sections/Toolkit"));
+const Experience = dynamic(() => import("@/components/sections/Experience"));
+const SelectedWork = dynamic(() => import("@/components/sections/SelectedWork"));
+const BuilderNote = dynamic(() => import("@/components/sections/BuilderNote"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
+const Footer = dynamic(() => import("@/components/layout/Footer"));
 const ScrollToTop = dynamic(() => import("@/components/common/ScrollToTop"));
-const Footer = dynamic(() => import("@/components/common/Footer"));
-const MobileCTABar = dynamic(() => import("@/components/common/MobileCTABar"));
 
 const Home = () => {
   return (
-    <PageBox>
-      <FloatingNavbar className="app_nav" navItems={menuItems} />
-      <MobileSectionNav navItems={menuItems} />
-      <HomeSection1 id="hero" />
-      <HomeSection2 id="about" />
-      <HomeSection3 id="experiences" />
-      <HomeSection4 id="skills" />
-      <HomeSection5 id="projects" />
-      <HomeSection6 id="contact" />
+    <>
+      <Header />
+
+      <Hero />
+      <About />
+      <CurrentlyBuilding />
+      <KaryaloShowcase />
+      <VoiceAgentsShowcase />
+      <Toolkit />
+      <Experience />
+      <SelectedWork />
+      <BuilderNote />
+      <Contact />
+
       <Footer />
       <ScrollToTop />
-      <MobileCTABar />
-    </PageBox>
+    </>
   );
 };
 
