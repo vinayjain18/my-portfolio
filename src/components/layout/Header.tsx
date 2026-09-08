@@ -3,14 +3,42 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import navLinks from "@/data/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import navLinks, {
+  bookACallHref,
+  MENU_LABEL,
+  sectionIds,
+  sectionLabels,
+} from "@/data/navigation";
 import useActiveSection from "@/hooks/useActiveSection";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { cn } from "@/utils/cn";
 
+/**
+ * Which nav item should be highlighted for a given section. The showcase
+ * sections sit under "Building", and the closing note under "Work", so the
+ * underline never falls back to the top of the page mid-scroll.
+ */
+const navGroup: Record<string, string> = {
+  hero: "hero",
+  about: "about",
+  building: "building",
+  karyalo: "building",
+  "voice-agents": "building",
+  toolkit: "building",
+  experience: "experience",
+  work: "work",
+  note: "work",
+  contact: "contact",
+};
+
 const Header = () => {
-  const sections = useMemo(() => navLinks.map((link) => link.section), []);
-  const active = useActiveSection(sections);
+  // One scroll listener drives both the nav underline and the mobile label.
+  const tracked = useMemo(() => sectionIds, []);
+  const section = useActiveSection(tracked);
+  const activeNav = navGroup[section] ?? "hero";
+
   const reduceMotion = useReducedMotion();
 
   const [scrolled, setScrolled] = useState(false);
@@ -42,6 +70,12 @@ const Header = () => {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
+  // Reads "Menu" at the top of the page, the section name once you are into
+  // it, and "Close" while the sheet is open.
+  const menuLabel = menuOpen
+    ? "Close"
+    : sectionLabels[section] ?? MENU_LABEL;
+
   return (
     <header
       className={cn(
@@ -51,10 +85,10 @@ const Header = () => {
           : "border-b border-transparent bg-transparent"
       )}
     >
-      <div className="constrained-width mx-auto flex h-16 items-center justify-between gap-6 px-5 sm:px-8">
+      <div className="constrained-width mx-auto flex h-16 items-center justify-between gap-3 px-5 sm:gap-6 sm:px-8">
         <Link
           href="#hero"
-          className="font-display text-base font-bold tracking-[-0.02em] text-[var(--textColor)]"
+          className="shrink-0 font-display text-xl font-bold leading-none tracking-[-0.03em] text-[var(--textColor)] md:text-2xl"
         >
           VJ
           <span className="text-[var(--primaryColor)]">.</span>
@@ -64,7 +98,7 @@ const Header = () => {
         <nav aria-label="Sections" className="hidden md:block">
           <ul className="flex items-center gap-1">
             {navLinks.map((link) => {
-              const isActive = active === link.section;
+              const isActive = activeNav === link.section;
 
               return (
                 <li key={link.href}>
@@ -104,15 +138,38 @@ const Header = () => {
         <div className="flex items-center gap-2">
           <ThemeToggle className="hidden sm:inline-flex" />
 
+          <Link
+            href={bookACallHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="app__filled_btn small__btn !h-10 shrink-0 !rounded-full !py-0 md:!h-9"
+          >
+            Book a call
+          </Link>
+
           <button
             ref={menuButtonRef}
             type="button"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((open) => !open)}
-            className="md:hidden inline-flex items-center gap-2 rounded-full border border-[var(--borderColor)] bg-[var(--surfaceColor)] px-3.5 py-2 text-sm font-medium text-[var(--textColor)]"
+            className="inline-flex h-10 shrink-0 items-center justify-between gap-2 rounded-full border border-[var(--borderColorStrong)] bg-[var(--surfaceColor)] pl-3.5 pr-3 text-sm font-medium text-[var(--textColor)] md:hidden"
           >
-            {menuOpen ? "Close" : "Menu"}
+            {/* Fixed width, or the header reflows every time the label
+                changes as you scroll. Narrower on small phones, where the
+                logo, the CTA and this button are competing for the bar. */}
+            <span className="w-[4.5rem] truncate text-left min-[380px]:w-[5.5rem]">
+              {menuLabel}
+            </span>
+
+            <FontAwesomeIcon
+              icon={faChevronDown}
+              aria-hidden="true"
+              className={cn(
+                "h-3 w-3 shrink-0 text-[var(--textColorLight)] transition-transform duration-200 ease-out",
+                menuOpen && "rotate-180"
+              )}
+            />
           </button>
         </div>
       </div>
@@ -125,13 +182,13 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden border-b border-[var(--borderColor)] bg-[var(--bgColor)]"
+            className="border-b border-[var(--borderColor)] bg-[var(--bgColor)] md:hidden"
           >
             <div className="px-5 pb-6 pt-2 sm:px-8">
               <nav aria-label="Sections">
                 <ul className="flex flex-col">
                   {navLinks.map((link) => {
-                    const isActive = active === link.section;
+                    const isActive = activeNav === link.section;
 
                     return (
                       <li key={link.href}>
@@ -159,7 +216,7 @@ const Header = () => {
 
               <div className="mt-5 flex items-center justify-between gap-4">
                 <span className="label">Theme</span>
-                <ThemeToggle showLabels className="flex-1 max-w-[16rem]" />
+                <ThemeToggle showLabels className="max-w-[16rem] flex-1" />
               </div>
             </div>
           </motion.div>

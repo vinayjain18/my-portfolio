@@ -11,6 +11,7 @@ import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import SectionTitle from "@/components/common/SectionTitle";
 import Reveal from "@/components/common/Reveal";
 import Strings from "@/constants/strings";
+import { bookACallHref } from "@/data/navigation";
 
 interface Channel {
   name: string;
@@ -82,7 +83,7 @@ const Contact = () => {
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
-                href="https://cal.com/vinay-jain/30min"
+                href={bookACallHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="app__filled_btn !w-full sm:!w-auto"
